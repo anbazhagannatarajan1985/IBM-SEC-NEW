@@ -1,0 +1,31 @@
+<table class="table table-striped table-bordered">
+  <thead class="thead-ibm">
+    <tr>
+      <th scope="col">Form #</th>
+      <th scope="col">Requestor</th>
+      <th scope="col">Status</th>
+      <th *ngIf="userType === '1' || userType === '2'" scope="col">Action</th>
+      <th *ngIf="userType !== '1' && userType !== '2'" scope="col">Approver</th>
+      <th *ngIf="userType !== '1' && userType !== '2'" scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let form of formList; index as i">
+      <th scope="row">{{ form.formId}}</th>
+      <td>{{ form.requestorName}}</td>
+      <td>{{ (form.formStatus === '1' ? 'New' : form.formStatus === '2' ? 'Pending Approval' : form.formStatus === '3' ? 'Approved'
+        : 'CLOSED') }}
+      </td>
+      <td *ngIf="userType === '1' || userType === '2'">
+        <i [routerLink]="['/edit-estimator', form.formId, false]" class="fa fa-pencil-square  icon-ibm" aria-hidden="true" title="Edit"></i> &nbsp;&nbsp;
+        <i class="fa fa-thumbs-up icon-ibm " aria-hidden="true" title="Approve" (click)="approveForm(form.formId, i)"></i>
+      </td>
+      <td *ngIf="userType !== '1' && userType !== '2'">
+        {{form.approver}}
+      </td>
+      <td *ngIf="userType !== '1' && userType !== '2'" center>
+        <i [routerLink]="['/edit-estimator', form.formId, true]" class="fa fa-eye icon-ibm" aria-hidden="true"></i>
+      </td>
+    </tr>
+  </tbody>
+</table>

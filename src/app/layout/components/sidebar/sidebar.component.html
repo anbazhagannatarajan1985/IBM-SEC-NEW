@@ -1,0 +1,47 @@
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive, collapsed: collapsed}">
+  <div class="list-group text-right">
+    <br>
+    <a routerLink="/estimator" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;
+      <span>{{ 'NEW' | translate }}</span>
+
+    </a>
+    <br>
+    <a [routerLink]="['/db']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <i class="fa fa-database" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;
+      <span>{{ 'DB' | translate }}</span>
+
+    </a>
+    <br>
+    <a [routerLink]="['/trends']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <i class="fa fa-american-sign-language-interpreting" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;
+      <span>{{ 'TRENDS' | translate }}</span>
+    </a>
+    <br>
+    <a [routerLink]="['/estimator', 'search']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <i class="fa fa-search" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;
+      <span>{{ 'FORM #' | translate }}</span>
+    </a>
+    <br>
+    <a *ngIf="userType === '2' || userType === '1'" [routerLink]="['/form-list']" [routerLinkActive]="['router-link-active']"
+      class="list-group-item">
+      <i class="fa fa-search" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;
+      <span>{{ 'Pending List' | translate }}</span>
+    </a>
+
+    <a *ngIf="userType !== '2' && userType !== '1'" [routerLink]="['/form-list']" [routerLinkActive]="['router-link-active']"
+      class="list-group-item">
+      <i class="fa fa-search" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;
+      <span>{{ 'Forms' | translate }}</span>
+    </a>
+    <!-- <a [routerLink]="['/forms']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <i class="fa fa-fw fa-edit"></i>&nbsp;
+        <span>{{ 'Forms' | translate }}</span>
+      </a> -->
+
+  </div>
+  <div class="toggle-button" [ngClass]="{collapsed: collapsed}" (click)="toggleCollapsed()">
+    <i class="fa fa-fw fa-angle-double-left"></i>&nbsp;
+    <span>{{ 'Collapse Sidebar' | translate }}</span>
+  </div>
+</nav>
