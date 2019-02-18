@@ -18,7 +18,7 @@
       </td>
       <td *ngIf="userType === '1' || userType === '2'">
         <i [routerLink]="['/edit-estimator', form.formId, false]" class="fa fa-pencil-square  icon-ibm" aria-hidden="true" title="Edit"></i> &nbsp;&nbsp;
-        <i class="fa fa-thumbs-up icon-ibm " aria-hidden="true" title="Approve" (click)="approveForm(form.formId, i)"></i>
+        <i *ngIf="isPendingListPage" class="fa fa-thumbs-up icon-ibm " aria-hidden="true" title="Approve" (click)="approveForm(form.formId, i)"></i>
       </td>
       <td *ngIf="userType !== '1' && userType !== '2'">
         {{form.approver}}

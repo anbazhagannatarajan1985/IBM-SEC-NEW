@@ -3,6 +3,7 @@ export interface WorkstationModel {
   id?: string;
   vendor?: number;
   antiMalwareAgent?: string;
+  encryptionEndpoint?: boolean;
   hostIpsOnServers?: boolean;
   hostFirewallOnServers?: boolean;
   deviceApplicationControl?: boolean;

@@ -1,7 +1,7 @@
 <nav class="sidebar" [ngClass]="{sidebarPushRight: isActive, collapsed: collapsed}">
   <div class="list-group text-right">
     <br>
-    <a routerLink="/estimator" [routerLinkActive]="['router-link-active']" class="list-group-item">
+    <a [routerLink]="['/estimator']" [routerLinkActive]="['router-link-active']" class="list-group-item">
       <i class="fa fa-plus-circle" aria-hidden="true"></i> &nbsp;&nbsp;&nbsp;
       <span>{{ 'NEW' | translate }}</span>
 
@@ -18,22 +18,22 @@
       <span>{{ 'TRENDS' | translate }}</span>
     </a>
     <br>
-    <a [routerLink]="['/estimator', 'search']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+    <a [routerLink]="['/estimator', 'true']" [routerLinkActive]="['router-link-active']" class="list-group-item">
       <i class="fa fa-search" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;
-      <span>{{ 'FORM #' | translate }}</span>
+      <span>{{ 'SEARCH FORM' | translate }}</span>
     </a>
     <br>
-    <a *ngIf="userType === '2' || userType === '1'" [routerLink]="['/form-list']" [routerLinkActive]="['router-link-active']"
+    <a [routerLink]="['/form-list', 'false']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <i class="fa fa-list-ul" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;
+      <span>{{ 'FORMS' | translate }}</span>
+    </a>
+    <br>
+    <a *ngIf="userType === '2' || userType === '1'" [routerLink]="['/form-list', 'true']" [routerLinkActive]="['router-link-active']"
       class="list-group-item">
-      <i class="fa fa-search" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;
-      <span>{{ 'Pending List' | translate }}</span>
+      <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;
+      <span>{{ 'PENDING LIST' | translate }}</span>
     </a>
 
-    <a *ngIf="userType !== '2' && userType !== '1'" [routerLink]="['/form-list']" [routerLinkActive]="['router-link-active']"
-      class="list-group-item">
-      <i class="fa fa-search" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;
-      <span>{{ 'Forms' | translate }}</span>
-    </a>
     <!-- <a [routerLink]="['/forms']" [routerLinkActive]="['router-link-active']" class="list-group-item">
         <i class="fa fa-fw fa-edit"></i>&nbsp;
         <span>{{ 'Forms' | translate }}</span>

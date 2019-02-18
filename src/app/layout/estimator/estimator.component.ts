@@ -70,6 +70,7 @@ export class EstimatorComponent implements OnInit {
   serverModel: models.ServerModel = {};
   workstationModel: models.WorkstationModel = {};
   nextFormId: string;
+  encryptionEndpoint: boolean = false;
   hostIpsOnServer: boolean = false;
   hostFirewallOnServer: boolean = false;
   hostIpsOnWorkstation: boolean = false;
@@ -107,6 +108,7 @@ export class EstimatorComponent implements OnInit {
   public datePreparedModel: any;
   validToModel: any;
   isView: boolean = false;
+  public isSearchPage: boolean = false;
 
 
   constructor(private modalService: NgbModal, private formBuilder: FormBuilder,
@@ -130,9 +132,29 @@ export class EstimatorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.addFormControl();
-    this.getNextFormId();
-    this.getVendorList();
+    debugger
+    this.userSubscription = this._Activatedroute.params.subscribe(
+      (params: Params) => {
+
+        if (params['isSearch'] === 'true') {
+          this.isSearchPage = true;
+        } else {
+          this.isSearchPage = false;
+        }
+
+        const selectedFormId = params['formId'];
+        if (params['isView'] === 'true') {
+          this.isView = true;
+        } else {
+          this.isView = false;
+        }
+
+        if (!!selectedFormId && selectedFormId !== '') {
+          this.loadForm(selectedFormId);
+          this.submittedFormIdToDownload = selectedFormId;
+        }
+
+      });
 
     const currentDate = moment().toDate();
     const dateStr = this.datePipe.transform(currentDate, 'dd-MM-yyyy');
@@ -147,6 +169,23 @@ export class EstimatorComponent implements OnInit {
     };
 
 
+    this.addFormControl();
+    if (!this.isSearchPage) {
+      this.getNextFormId();
+    } else {
+      this.detailsForm.get('formId').setValue('');
+      this.detailsForm.get('formStatus').setValue('');
+      this.detailsForm.get('formStatusId').setValue('');
+      this.detailsForm.get('requestorName').setValue('');
+      this.detailsForm.get('requestorId').setValue('');
+      this.datePreparedModel = '';
+      this.validToModel = ''
+    }
+    this.getVendorList();
+
+
+
+
     const status = EstimatorConfig.getFormStatusbyId('1');
     if (!!status) {
       this.detailsForm.get('formStatus').setValue(status.value);
@@ -156,22 +195,6 @@ export class EstimatorComponent implements OnInit {
 
     // this.detailsForm.get('datePrepared').setValue();
 
-    this.userSubscription = this._Activatedroute.params.subscribe(
-      (params: Params) => {
-        debugger
-        const selectedFormId = params['formId'];
-        if (params['isView'] === 'true') {
-          this.isView = true;
-        } else {
-          this.isView = false;
-        }
-
-        if (!!selectedFormId && selectedFormId !== '') {
-          this.loadForm(selectedFormId);
-          this.submittedFormIdToDownload = selectedFormId;
-        }
-
-      });
 
 
   }
@@ -245,6 +268,7 @@ export class EstimatorComponent implements OnInit {
     this.workstationForm = this.formBuilder.group({
       vendor: ['', Validators.required],
       antiMalwareAgent: ['', Validators.required],
+      encryptionEndpoint: [false],
       hostIpsOnServers: [false],
       hostFirewallOnServers: [false],
       deviceApplicationControl: [false],
@@ -418,6 +442,11 @@ export class EstimatorComponent implements OnInit {
   hostFirewallOnServerChanged(event: any) {
     this.hostFirewallOnServer = event;
     this.serverForm.get('hostFirewallOnServers').setValue(event);
+  }
+
+  encryptionEndpointChanged(event: any) {
+    this.encryptionEndpoint = event;
+    this.workstationForm.get('encryptionEndpoint').setValue(event);
   }
 
   hostIpsOnWorkStationChanged(event: any) {
@@ -669,6 +698,7 @@ export class EstimatorComponent implements OnInit {
 
     this.workstationModel.vendor = this.workstationForm.get('vendor').value;
     this.workstationModel.antiMalwareAgent = this.workstationForm.get('antiMalwareAgent').value;
+    this.workstationModel.encryptionEndpoint = this.workstationForm.get('encryptionEndpoint').value;
     this.workstationModel.hostIpsOnServers = this.workstationForm.get('hostIpsOnServers').value;
     this.workstationModel.hostFirewallOnServers = this.workstationForm.get('hostFirewallOnServers').value;
     this.workstationModel.noOfConsoles = this.workstationForm.get('noOfConsoles').value;
@@ -822,6 +852,15 @@ export class EstimatorComponent implements OnInit {
     this.hostIpsOnServer = this.serverForm.get('hostIpsOnServers').value;
     this.hostFirewallOnServer = this.serverForm.get('hostFirewallOnServers').value;
 
+    const workstationFormControls = EstimatorConfig.getWorkstationFormControls();
+    for (const control of workstationFormControls) {
+      this.workstationForm.get(control).setValue(formDetail['workstationDetails'][control]);
+    }
+
+    this.encryptionEndpoint = this.workstationForm.get('encryptionEndpoint').value;
+    this.hostIpsOnWorkstation = this.workstationForm.get('hostIpsOnServers').value;
+    this.hostFirewallOnWorkstation = this.workstationForm.get('hostFirewallOnServers').value;
+
   }
 
   setSelectedCoe(selectedCoe: string) {
@@ -879,6 +918,7 @@ export class EstimatorComponent implements OnInit {
     this.hostIpsOnWorkstation = false;
     this.hostFirewallOnWorkstation = false;
     this.deviceApplicationControl = false;
+    this.encryptionEndpoint = false;
 
     this.setAction(false, false, false, false, false);
     this.setServiceAction(false, false, false, false, false);

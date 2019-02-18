@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AppConfig } from '../../app.config';
-import { ServiceProvider } from '../../shared/services/service-provider';
 import Swal from 'sweetalert2';
+import { Subscription } from 'rxjs';
+import { ActivatedRoute, Params } from '@angular/router';
 
+import { ServiceProvider } from '../../shared/services/service-provider';
 import * as models from '../../shared/models';
 
 @Component({
@@ -12,19 +14,28 @@ import * as models from '../../shared/models';
 })
 export class FormListComponent implements OnInit {
 
-  private formList: models.FormDetailModel[];
-  private userType: string = '';
+  public formList: models.FormDetailModel[];
+  public userType: string = '';
+  userSubscription: Subscription;
+  public isPendingListPage: boolean = false;
 
-  constructor(private serviceProvider: ServiceProvider) {
+  constructor(private serviceProvider: ServiceProvider, private _Activatedroute: ActivatedRoute) {
     this.userType = localStorage.getItem('user_type');
   }
 
   ngOnInit() {
-    if (this.userType === '2' || this.userType === '1') {
-      this.getPendingFormList();
-    } else {
-      this.getRequstorFormList();
-    }
+
+
+    this.userSubscription = this._Activatedroute.params.subscribe(
+      (params: Params) => {
+        if (!!params && !!params['showPendingList'] && params['showPendingList'] === 'true') {
+          this.isPendingListPage = true;
+          this.getPendingFormList();
+        } else {
+          this.isPendingListPage = false;
+          this.getRequstorFormList();
+        }
+      });
   }
 
   getPendingFormList() {

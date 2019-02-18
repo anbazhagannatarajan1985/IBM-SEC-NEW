@@ -15,7 +15,7 @@
 
         Customer/Account Information
       </div>
-      <div class="col-4 pull-right">
+      <div *ngIf="isSearchPage" class="col-4 pull-right">
         <div class="row pull-right">
           <div *ngIf="isToggleSearchClicked">
             <form [formGroup]="searchForm">
@@ -700,6 +700,14 @@
                         <div *ngIf="detailsFormSubmitted && wf.antiMalwareAgent.errors" class="invalid-feedback">
                           <div *ngIf="wf.antiMalwareAgent.errors.required">Anti-Malware (Agent) is required</div>
                         </div>
+                      </div>
+                    </div>
+                    <div class="row form-group">
+                      <div class="col-xl-6 col-lg-6">
+                        <label class="sub-field-label">Encryption Endpoint</label>
+                      </div>
+                      <div class="col-xl-6 col-lg-6">
+                        <ui-switch [disabled]="isView" size="small" switchColor="#fcfcfc" defaultBgColor="red" [checked]="encryptionEndpoint" (change)="encryptionEndpointChanged($event)"></ui-switch>
                       </div>
                     </div>
                     <div class="row form-group">
