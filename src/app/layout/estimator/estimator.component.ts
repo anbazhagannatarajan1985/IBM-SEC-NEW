@@ -101,7 +101,7 @@ export class EstimatorComponent implements OnInit {
     monthSelector: true,
     yearSelector: true,
     showTodayBtn: true,
-    height: '30px',
+    height: '27px',
   };
 
   // Initialized to specific date (09.10.2018).

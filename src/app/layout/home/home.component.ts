@@ -12,8 +12,10 @@ declare var $: any;
 })
 export class HomeComponent implements OnInit {
 
+  loggedInUser: string = '';
 
   constructor() {
+    this.loggedInUser = localStorage.getItem('current_user_name');
 
   }
 

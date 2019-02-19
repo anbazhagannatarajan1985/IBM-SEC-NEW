@@ -10,6 +10,7 @@
     </tr>
   </thead>
   <tbody>
+    
     <tr *ngFor="let form of formList; index as i">
       <th scope="row">{{ form.formId}}</th>
       <td>{{ form.requestorName}}</td>
@@ -29,3 +30,6 @@
     </tr>
   </tbody>
 </table>
+<div *ngIf="!formList || formList.length <= 0" class="text-center">
+    <span class="text-danger">No data available.</span>
+</div>

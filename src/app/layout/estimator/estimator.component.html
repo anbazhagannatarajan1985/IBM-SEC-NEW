@@ -1,14 +1,5 @@
-<div class="row text-center">
-  <div class="col-xl-12 col-lg-12 ibm-text-color">
-    <h1>BLUEQ</h1>
-  </div>
-  <div class="col-xl-12 col-lg-12 text-muted">
-    <h5>IBM India Pvt. Ltd</h5>
-  </div>
-</div>
-<br>
 
-<div class="card card-default " style="border: none !important;">
+<div class="card card-default" style="border: none !important;">
   <div class="card-header card-header-ibm">
     <div class="row">
       <div class="col-8 pull-left">
@@ -41,24 +32,19 @@
     </div>
   </div>
 
-  <br>
-
-  <form [formGroup]="detailsForm">
+  <form [formGroup]="detailsForm" class="padding-bottom-form">
     <div class="row  border-primary">
       <div class="col-xl-4 col-lg-4">
         <div class="card card-default border-primary ">
           <div class="card-header card-header-ibm">
           </div>
           <div class="card-body p-1 m-1">
-            <div class="form-group has-danger">
+            <div class="form-group ibm-form-group-field has-danger">
               <label class="field-label ibm-text-color" for="formId">Form ID #</label>
               <input [ngClass]="{'is-invalid': detailsFormSubmitted && df.formId.errors}" readonly formControlName="formId" id="formId"
                 type="text" name="formId" class="form-control form-control-sm " placeholder="Enter Form ID" data-error="Form Id is required.">
-              <!-- <div *ngIf="detailsFormSubmitted && df.formId.errors" class="invalid-feedback">
-                <div *ngIf="df.formId.errors.required">Form Id # is required</div>
-              </div> -->
             </div>
-            <div class="form-group">
+            <div class="form-group ibm-form-group-field">
               <label class="field-label ibm-text-color" for="formStatus">Form Status</label>
               <input [ngClass]="{'is-invalid': detailsFormSubmitted && df.formStatus.errors}" readonly formControlName="formStatus" id="formStatus"
                 type="text" name="email" class=" form-control form-control-sm" placeholder="Enter Form Status" data-error="Valid email is required.">
@@ -66,7 +52,7 @@
                 <div *ngIf="df.formStatus.errors.required">Form Status is required</div>
               </div> -->
             </div>
-            <div class="form-group">
+            <div class="form-group ibm-form-group-field">
               <label class="field-label ibm-text-color" for="requestorName">Requestor</label>
               <input [ngClass]="{'is-invalid': detailsFormSubmitted && df.requestorName.errors}" readonly formControlName="requestorName"
                 id="requestorName" type="text" name="phone" class="form-control form-control-sm" placeholder="Enter Requestor">
@@ -74,7 +60,7 @@
                 <div *ngIf="df.requestorName.errors.required">Requestor Name is required</div>
               </div> -->
             </div>
-            <div class="form-group">
+            <div class="form-group ibm-form-group-field">
               <label class="field-label ibm-text-color" for="requestorId">Requestor ID</label>
               <input [ngClass]="{'is-invalid': detailsFormSubmitted && df.requestorId.errors}" readonly formControlName="requestorId" id="requestorId"
                 type="text" name="phone" class="form-control form-control-sm" placeholder="Requestor ID">
@@ -82,7 +68,7 @@
                 <div *ngIf="df.requestorId.errors.required">Request ID is required</div>
               </div> -->
             </div>
-            <div class="form-group">
+            <div class="form-group ibm-form-group-field">
               <label class="field-label ibm-text-color" for="riskRating">Risk Rating</label>
               <select [attr.disabled]="isView ? '' : null" [ngClass]="{'is-invalid': detailsFormSubmitted && df.riskRating.errors}" formControlName="riskRating"
                 id="riskRating" class="form-control form-control-sm " data-error="Risk Rating is required.">
@@ -102,7 +88,7 @@
           <div class="card-header card-header-ibm">
           </div>
           <div class="card-body p-1 m-1">
-            <div class="form-group">
+            <div class="form-group ibm-form-group-field ibm-form-group-date-picker">
               <label class="field-label ibm-text-color" for="datePrepared">Date Prepared</label>
               <my-date-picker [disabled]="isView" formControlName="datePrepared" [ngClass]="{'is-invalid': detailsFormSubmitted && df.datePrepared.errors}"
                 name="datePrepared" [options]="myDatePickerOptions" [(ngModel)]="datePreparedModel"></my-date-picker>
@@ -110,7 +96,7 @@
                 <div *ngIf="df.datePrepared.errors.required">Date Prepared # is required</div>
               </div> -->
             </div>
-            <div class="form-group">
+            <div class="form-group ibm-form-group-field ibm-form-group-date-picker">
               <label class="field-label ibm-text-color" for="validTo">Valid To</label>
               <my-date-picker [disabled]="isView" formControlName="validTo" [ngClass]="{'is-invalid': detailsFormSubmitted && df.validTo.errors}"
                 name="validTo" [options]="myDatePickerOptions" [(ngModel)]="validToModel"></my-date-picker>
@@ -118,13 +104,13 @@
                 <div *ngIf="df.validTo.errors.required">Valid To is required</div>
               </div> -->
             </div>
-            <div class="form-group">
+            <div class="form-group ibm-form-group-field">
               <label class="field-label ibm-text-color" for="form_phone">Sales Connect #</label>
               <input [attr.disabled]="isView ? '' : null" [ngClass]="{'is-invalid': detailsFormSubmitted && df.salesConnectNo.errors}"
                 formControlName="salesConnectNo" id="salesConnectNo" type="tel" name="phone" [ngClass]="{'red-border-class': df.salesConnectNo.errors}"
                 class=" form-control form-control-sm text-line" placeholder="Enter Sales Connect #">
             </div>
-            <div class="form-group">
+            <div class="form-group ibm-form-group-field">
               <label class="field-label ibm-text-color" for="rfsNo">RFS #</label>
               <input [attr.disabled]="isView ? '' : null" formControlName="rfsNo" [ngClass]="{'is-invalid': detailsFormSubmitted && df.rfsNo.errors}"
                 id="rfsNo" type="tel" name="phone" class="form-control form-control-sm" placeholder="Enter RFS #">
@@ -132,7 +118,7 @@
                 <div *ngIf="df.rfsNo.errors.required">RFS # is required</div>
               </div> -->
             </div>
-            <div class="form-group">
+            <div class="form-group ibm-form-group-field">
               <label class="field-label ibm-text-color" for="region">Region</label>
               <select [ngClass]="{'is-invalid': detailsFormSubmitted && df.region.errors}" [attr.disabled]="isView ? '' : null" formControlName="region"
                 id="region" class="form-control form-control-sm " data-error="Region is required.">
@@ -152,44 +138,32 @@
           <div class="card-header card-header-ibm">
           </div>
           <div class="card-body p-1 m-1">
-            <div class="form-group">
+            <div class="form-group ibm-form-group-field">
               <label class="field-label ibm-text-color" for="form_name">Customer/Account Name</label>
               <input [attr.disabled]="isView ? '' : null" formControlName="customerName" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerName.errors}"
                 id="customerName" type="text" name="customerName" class="form-control form-control-sm " placeholder="Enter Customer/Account Name"
                 required="required">
-              <!-- <div *ngIf="detailsFormSubmitted && df.customerName.errors" class="invalid-feedback">
-                <div *ngIf="df.customerName.errors.required">CustomerAccount Name is required</div>
-              </div> -->
             </div>
-            <div class="form-group">
+            <div class="form-group ibm-form-group-field">
               <label class="field-label ibm-text-color" for="customerId">Customer ID</label>
               <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
                 id="customerId" type="text" name="customerId" class="form-control form-control-sm" placeholder="Enter Customer Id"
                 required="required">
-              <!-- <div *ngIf="detailsFormSubmitted && df.customerId.errors" class="invalid-feedback">
-                <div *ngIf="df.customerId.errors.required">Customer Id is required</div>
-              </div> -->
             </div>
-            <div class="form-group">
+            <div class="form-group ibm-form-group-field">
               <label class="field-label ibm-text-color" for="salesId">Sales ID</label>
               <input [attr.disabled]="isView ? '' : null" formControlName="salesId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.salesId.errors}"
                 id="salesId" type="text" name="salesId" class="form-control form-control-sm" placeholder="Enter Sales Id">
-              <!-- <div *ngIf="detailsFormSubmitted && df.salesId.errors" class="invalid-feedback">
-                <div *ngIf="df.salesId.errors.required">Sales Id is required</div>
-              </div> -->
             </div>
-            <div class="form-group">
+            <div class="form-group ibm-form-group-field">
               <label class="field-label ibm-text-color" for="approver">Approver</label>
               <select [attr.disabled]="isView ? '' : null" formControlName="approver" [ngClass]="{'is-invalid': detailsFormSubmitted && df.approver.errors}"
                 id="approver" class="form-control form-control-sm">
                 <option value="" selected disabled>Select Approver</option>
                 <option *ngFor="let user of approverList" value="{{user.username}}">{{user.fullName}}</option>
               </select>
-              <!-- <div *ngIf="detailsFormSubmitted && df.approver.errors" class="invalid-feedback">
-                <div *ngIf="df.approver.errors.required">Approver is required</div>
-              </div> -->
             </div>
-            <div class="form-group">
+            <div class="form-group ibm-form-group-field">
               <label class="field-label ibm-text-color" for="custom">Custom</label>
               <select [attr.disabled]="isView ? '' : null" formControlName="custom" [ngClass]="{'is-invalid': detailsFormSubmitted && df.custom.errors}"
                 id="custom" class="form-control form-control-sm">
@@ -197,11 +171,72 @@
                 <option value="YES">YES</option>
                 <option value="NO">NO</option>
               </select>
-              <!-- <div *ngIf="detailsFormSubmitted && df.custom.errors" class="invalid-feedback">
-                <div *ngIf="df.custom.errors.required">Custom is required</div>
-              </div> -->
-
+             
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+
+    
+        <div class="card card-default border-primary ">
+          <div class="card-body p-1 m-1">
+            
+              <div class="col-xl-12 col-lg-12">
+                  <div class="row  border-primary">
+                <div class="form-group ibm-form-group-field col-xl-3 col-lg-3">
+                  <label class="field-label ibm-text-color" for="coe">COE</label>
+                  <select [attr.disabled]="isView ? '' : null" formControlName="coe" [ngClass]="{'is-invalid': detailsFormSubmitted && df.coe.errors}"
+                    id="coe" class="form-control form-control-sm">
+                    <option value="" selected disabled>Select COE</option>
+                    <option value="END_POINT">End Point</option>
+                    <option value="DAS">DAS</option>
+                    <option value="INFRA">INFRA</option>
+                    <option value="IAM">IAM</option>
+                    <option value="SIOC">SIOC</option>
+                  </select>
+                </div>
+
+                <div class="form-group ibm-form-group-field col-xl-3 col-lg-3">
+                  <label class="field-label ibm-text-color" for="coe">Endpoint Security Services</label>
+                  <select [attr.disabled]="isView ? '' : null" formControlName="coe" [ngClass]="{'is-invalid': detailsFormSubmitted && df.coe.errors}"
+                    id="coe" class="form-control form-control-sm">
+                    <option value="" selected disabled>--Select-</option>
+                    <option value="MALWARE" >Malware</option>
+                    <option value="WEB-SEC">Web Security</option>
+                    <option value="EMAIL-SEC">Email Security</option>
+                    <option value="VOL_MGMT">Volnerability Management</option>
+                    <option value="DLP">DLP</option>
+                    
+                  </select>
+                </div>
+
+                <div class="form-group ibm-form-group-field col-xl-3 col-lg-3">
+                    <label class="field-label ibm-text-color" for="serviceWindow">Service Window for Operations</label>
+                    <select [attr.disabled]="isView ? '' : null" formControlName="serviceWindow" [ngClass]="{'is-invalid': detailsFormSubmitted && ef.serviceWindow.errors}"
+                      id="serviceWindow" class="form-control form-control-sm border-primary" >
+                      <option value="" selected disabled>--Select--</option>
+                      <option *ngFor="let serviceOperation of serviceOperations" value="{{serviceOperation.id}}">{{serviceOperation.value}}</option>
+                    </select>
+                    <div *ngIf="detailsFormSubmitted && ef.serviceWindow.errors" class="invalid-feedback">
+                      <div *ngIf="ef.serviceWindow.errors.required">Service window for operations is required</div>
+                    </div>
+                  </div>
+
+                  <div class="form-group ibm-form-group-field col-xl-3 col-lg-3">
+                    <label class="field-label ibm-text-color" for="serviceScope">Service Scope</label>
+                    <select [attr.disabled]="isView ? '' : null" formControlName="serviceScope" [ngClass]="{'is-invalid': detailsFormSubmitted && ef.serviceScope.errors}"
+                      id="serviceScope" class="form-control form-control-sm border-primary" (change)="serviceScopeChange($event)">
+                      <option value="">--Select--</option>
+                      <option *ngFor="let serviceScope of serviceScopes" value="{{serviceScope.id}}">{{serviceScope.value}}</option>
+                    </select>
+                    <div *ngIf="detailsFormSubmitted && ef.serviceScope.errors" class="invalid-feedback">
+                      <div *ngIf="ef.serviceScope.errors.required">Service Scope is required</div>
+                    </div>
+                  </div>
+
           </div>
         </div>
       </div>
@@ -518,133 +553,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-xl-7 col-lg-7">
-                <div class="card border-primary">
-                  <div class="card-header card-header-ibm">
-
-                  </div>
-                  <div class="row form-group border-primary" style="padding-top: 10px !important;">
-                    <div class="col-xs-5 col-md-5 col-lg-5 col-sm-5 col-xl-5">
-
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2 text-center">
-                      <label class="field-label">Effort at Levels</label>
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2  text-center">
-                      <label class="field-label">Base FTE </label>
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2 text-center">
-                      <label class="field-label">Final FTE</label>
-                    </div>
-                  </div>
-                  <div class="row form-group m-1 p-1 ">
-                    <div class="col-xs-5 col-md-5 col-lg-5 col-sm-5 col-xl-5 text-left">
-                      <label class="field-label">Server's Factor</label>
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="serverFactor" id="serverFactor" type="text" class="form-control form-control-sm  border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="serverFactorBaseFte" id="serverFactorBaseFte" type="text" class="form-control form-control-sm  border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="serverFactorFinalFte" id="serverFactorFinalFte" type="text"
-                        class="form-control form-control-sm  border-primary">
-                    </div>
-                  </div>
-                  <div class="row form-group m-1 p-1">
-                    <div class="col-xs-5 col-md-5 col-lg-5 col-sm-5 col-xl-5 text-left">
-                      <label class="field-label">Server's Supported</label>
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="serverSupported" id="serverSupported" type="text" class="form-control form-control-sm  border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="serverSupportedBaseFte" id="serverSupportedBaseFte" type="text"
-                        class="form-control form-control-sm  border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="serverSupportedFinalFte" id="serverSupportedFinalFte" type="text"
-                        class="form-control form-control-sm  border-primary">
-                    </div>
-                  </div>
-                  <div class="row form-group m-1 p-1">
-                    <div class="col-xs-5 col-md-5 col-lg-5 col-sm-5 col-xl-5 text-letf">
-                      <label class="field-label">HIPS Effort</label>
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="hipsEffort" id="hipsEffort" type="text" class="form-control form-control-sm border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="hipsEffortBaseFte" id="hipsEffortBaseFte" type="text" class="form-control form-control-sm border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="hipsEffortFinalFte" id="hipsEffortFinalFte" type="text" class="form-control form-control-sm border-primary">
-                    </div>
-                  </div>
-                  <div class="row form-group m-1 p-1">
-                    <div class="col-xs-5 col-md-5 col-lg-5 col-sm-5 col-xl-5 text-letf">
-                      <label class="field-label">HIPS FW Effort</label>
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="hipsFwEffort" id="hipsFwEffort" type="text" class="form-control form-control-sm border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="hipsFwEffortBaseFte" id="hipsFwEffortBaseFte" type="text" class="form-control form-control-sm border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="hipsFwEffortFinalFte" id="hipsFwEffortFinalFte" type="text"
-                        class="form-control form-control-sm border-primary">
-                    </div>
-                  </div>
-                  <div class="row form-group m-1 p-1">
-                    <div class="col-xs-5 col-md-5 col-lg-5 col-sm-5 col-xl-5 text-letf">
-                      <label class="field-label">Number of Consoles</label>
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="noOfConsoleEffort" id="noOfConsoleEffort" type="text" class="form-control form-control-sm border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="noOfConsoleEffortBaseFte" id="noOfConsoleEffortBaseFte" type="text"
-                        class="form-control form-control-sm border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="noOfConsoleEffortFinalFte" id="noOfConsoleEffortFinalFte" type="text"
-                        class="form-control form-control-sm border-primary">
-                    </div>
-                  </div>
-                  <div class="row form-group m-1 p-1">
-                    <div class="col-xs-5 col-md-5 col-lg-5 col-sm-5 col-xl-5 text-letf">
-                      <label class="field-label">FTE Round Off</label>
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="fteRoundOff" id="fteRoundOff" type="text" class="form-control form-control-sm border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="fteRoundOffBaseFte" id="fteRoundOffBaseFte" type="text" class="form-control form-control-sm border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="fteRoundOffFinalFte" id="fteRoundOffFinalFte" type="text" class="form-control form-control-sm border-primary">
-                    </div>
-                  </div>
-                  <div class="row form-group m-1 p-1">
-                    <div class="col-xs-5 col-md-5 col-lg-5 col-sm-5 col-xl-5 text-letf">
-                      <label class="field-label">FTE for Calculations</label>
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="fteForCalculation" id="fteForCalculation" type="text" class="form-control form-control-sm border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="fteForCalculationBaseFte" id="fteForCalculationBaseFte" type="text"
-                        class="form-control form-control-sm border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="fteForCalculationFinalFte" id="fteForCalculationFinalFte" type="text"
-                        class="form-control form-control-sm border-primary">
-                    </div>
-                  </div>
-                </div>
-              </div>
+              
 
             </div>
           </form>
@@ -657,267 +566,6 @@
     <br>
   </div>
 
-  <div *ngIf="isWorkstationScope" class="card card-default ibm-text-color" style="border: none !important;">
-    <div class="row">
-      <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 col-xl-12">
-        <div class="card card-defailt" style="border: none !important;">
-          <div class="card-header card-header-ibm" (click)="collapseWorkstationDetailSelected()">Workstations
-            <i *ngIf="!collapseWorkstationDetails" class="fa fa-angle-double-down pull-right icon-25" aria-hidden="true"></i>
-            <i *ngIf="collapseWorkstationDetails" class="fa fa-angle-double-left pull-right icon-25" aria-hidden="true"></i>
-          </div>
-          <br>
-          <form [formGroup]="workstationForm">
-            <div class="row">
-              <div class="col-xl-5 col-lg-5">
-                <div class="card border-primary">
-                  <div class="card-header card-header-ibm">
-
-                  </div>
-
-                  <div class="card-body">
-                    <div class="row form-group">
-                      <div class="col-xl-6 col-lg-6">
-                        <label class="sub-field-label">Vendor</label>
-                      </div>
-                      <div class="col-xl-6 col-lg-6">
-                        <select [attr.disabled]="isView ? '' : null" formControlName="vendor" [ngClass]="{'is-invalid': detailsFormSubmitted && wf.vendor.errors}"
-                          id="vendor" class="form-control form-control-sm  border-primary" (change)="serviceScopeChange($event)">
-                          <option value="" selected disabled>--Select--</option>
-                          <option *ngFor="let vendor of vendorList" value="{{vendor.id}}">{{vendor.name}}</option>
-                        </select>
-                        <div *ngIf="detailsFormSubmitted && wf.vendor.errors" class="invalid-feedback">
-                          <div *ngIf="wf.vendor.errors.required">Vendor is required</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row form-group">
-                      <div class="col-xl-6 col-lg-6">
-                        <label class="sub-field-label">Anti-Malware (Agent)</label>
-                      </div>
-                      <div class="col-xl-6 col-lg-6">
-                        <input [attr.disabled]="isView ? '' : null" formControlName="antiMalwareAgent" [ngClass]="{'is-invalid': detailsFormSubmitted && wf.antiMalwareAgent.errors}"
-                          id="antiMalwareAgent" class="form-control form-control-sm  border-primary" type="text">
-                        <div *ngIf="detailsFormSubmitted && wf.antiMalwareAgent.errors" class="invalid-feedback">
-                          <div *ngIf="wf.antiMalwareAgent.errors.required">Anti-Malware (Agent) is required</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row form-group">
-                      <div class="col-xl-6 col-lg-6">
-                        <label class="sub-field-label">Encryption Endpoint</label>
-                      </div>
-                      <div class="col-xl-6 col-lg-6">
-                        <ui-switch [disabled]="isView" size="small" switchColor="#fcfcfc" defaultBgColor="red" [checked]="encryptionEndpoint" (change)="encryptionEndpointChanged($event)"></ui-switch>
-                      </div>
-                    </div>
-                    <div class="row form-group">
-                      <div class="col-xl-6 col-lg-6">
-                        <label class="sub-field-label">Host IPS on Servers</label>
-                      </div>
-                      <div class="col-xl-6 col-lg-6">
-                        <ui-switch [disabled]="isView" size="small" switchColor="#fcfcfc" defaultBgColor="red" [checked]="hostIpsOnWorkstation" (change)="hostIpsOnWorkStationChanged($event)"></ui-switch>
-                      </div>
-                    </div>
-                    <div class="row form-group">
-                      <div class="col-xl-6 col-lg-6">
-                        <label class="sub-field-label">Host Firewall on Servers</label>
-                      </div>
-                      <div class="col-xl-6 col-lg-6">
-                        <ui-switch [disabled]="isView" size="small" switchColor="#fcfcfc" defaultBgColor="red" [checked]="hostFirewallOnWorkstation"
-                          (change)="hostFirewallOnWorkStationChanged($event)"></ui-switch>
-                      </div>
-                    </div>
-                    <div class="row form-group">
-                      <div class="col-xl-6 col-lg-6">
-                        <label class="sub-field-label">Device Application Control</label>
-                      </div>
-                      <div class="col-xl-6 col-lg-6">
-                        <ui-switch [disabled]="isView" size="small" switchColor="#fcfcfc" defaultBgColor="red" [checked]="deviceApplicationControl"
-                          (change)="deviceApplicationControlChanged($event)"></ui-switch>
-                      </div>
-                    </div>
-                    <div class="row form-group">
-                      <div class="col-xl-6 col-lg-6">
-                        <label class="sub-field-label">No of Consoles</label>
-                      </div>
-                      <div class="col-xl-6 col-lg-6">
-                        <input [attr.disabled]="isView ? '' : null" formControlName="noOfConsoles" [ngClass]="{'is-invalid': detailsFormSubmitted && sf.noOfConsoles.errors}"
-                          id="noOfConsoles" class="form-control form-control-sm  border-primary" type="text">
-                        <div *ngIf="detailsFormSubmitted && sf.noOfConsoles.errors" class="invalid-feedback">
-                          <div *ngIf="sf.noOfConsoles.errors.required">No Of Consoles is required</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-7 col-lg-7">
-                <div class="card border-primary">
-                  <div class="card-header card-header-ibm">
-
-                  </div>
-                  <div class="row form-group border-primary" style="padding-top: 10px !important;">
-                    <div class="col-xs-5 col-md-5 col-lg-5 col-sm-5 col-xl-5">
-
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2 text-center">
-                      <label class="field-label">Effort at Levels</label>
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2  text-center">
-                      <label class="field-label">Base FTE </label>
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2 text-center">
-                      <label class="field-label">Final FTE</label>
-                    </div>
-                  </div>
-                  <div class="row form-group m-1 p-1 ">
-                    <div class="col-xs-5 col-md-5 col-lg-5 col-sm-5 col-xl-5 text-left">
-                      <label class="field-label">Workstation Factor</label>
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="serverFactor" id="serverFactor" type="text" class="form-control form-control-sm  border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="serverFactorBaseFte" id="serverFactorBaseFte" type="text" class="form-control form-control-sm  border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="serverFactorFinalFte" id="serverFactorFinalFte" type="text"
-                        class="form-control form-control-sm  border-primary">
-                    </div>
-                  </div>
-                  <div class="row form-group m-1 p-1">
-                    <div class="col-xs-5 col-md-5 col-lg-5 col-sm-5 col-xl-5 text-left">
-                      <label class="field-label">Workstation Supported</label>
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="serverSupported" id="serverSupported" type="text" class="form-control form-control-sm  border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="serverSupportedBaseFte" id="serverSupportedBaseFte" type="text"
-                        class="form-control form-control-sm  border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="serverSupportedFinalFte" id="serverSupportedFinalFte" type="text"
-                        class="form-control form-control-sm  border-primary">
-                    </div>
-                  </div>
-                  <div class="row form-group m-1 p-1">
-                    <div class="col-xs-5 col-md-5 col-lg-5 col-sm-5 col-xl-5 text-left">
-                      <label class="field-label">Encryption Effort</label>
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="encryptionEffort" id="encryptionEffort" type="text" class="form-control form-control-sm  border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="encryptionEffortBaseFte" id="encryptionEffortBaseFte" type="text"
-                        class="form-control form-control-sm  border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="encryptionEffortFinalFte" id="encryptionEffortFinalFte" type="text"
-                        class="form-control form-control-sm  border-primary">
-                    </div>
-                  </div>
-                  <div class="row form-group m-1 p-1">
-                    <div class="col-xs-5 col-md-5 col-lg-5 col-sm-5 col-xl-5 text-letf">
-                      <label class="field-label">HIPS Effort</label>
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="hipsEffort" id="hipsEffort" type="text" class="form-control form-control-sm border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="hipsEffortBaseFte" id="hipsEffortBaseFte" type="text" class="form-control form-control-sm border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="hipsEffortFinalFte" id="hipsEffortFinalFte" type="text" class="form-control form-control-sm border-primary">
-                    </div>
-                  </div>
-                  <div class="row form-group m-1 p-1">
-                    <div class="col-xs-5 col-md-5 col-lg-5 col-sm-5 col-xl-5 text-letf">
-                      <label class="field-label">HIPS FW Effort</label>
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="hipsFwEffort" id="hipsFwEffort" type="text" class="form-control form-control-sm border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="hipsFwEffortBaseFte" id="hipsFwEffortBaseFte" type="text" class="form-control form-control-sm border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="hipsFwEffortFinalFte" id="hipsFwEffortFinalFte" type="text"
-                        class="form-control form-control-sm border-primary">
-                    </div>
-                  </div>
-                  <div class="row form-group m-1 p-1">
-                    <div class="col-xs-5 col-md-5 col-lg-5 col-sm-5 col-xl-5 text-letf">
-                      <label class="field-label">Device Application Control</label>
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="deviceApplicationControlEffort" id="deviceApplicationControlEffort"
-                        type="text" class="form-control form-control-sm border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="deviceApplicationControlBaseFte" id="deviceApplicationControlBaseFte"
-                        type="text" class="form-control form-control-sm border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="deviceApplicationControlFinalFte" id="deviceApplicationControlFinalFte"
-                        type="text" class="form-control form-control-sm border-primary">
-                    </div>
-                  </div>
-                  <div class="row form-group m-1 p-1">
-                    <div class="col-xs-5 col-md-5 col-lg-5 col-sm-5 col-xl-5 text-letf">
-                      <label class="field-label">Number of Consoles</label>
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="noOfConsoleEffort" id="noOfConsoleEffort" type="text" class="form-control form-control-sm border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="noOfConsoleEffortBaseFte" id="noOfConsoleEffortBaseFte" type="text"
-                        class="form-control form-control-sm border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="noOfConsoleEffortFinalFte" id="noOfConsoleEffortFinalFte" type="text"
-                        class="form-control form-control-sm border-primary">
-                    </div>
-                  </div>
-                  <div class="row form-group m-1 p-1">
-                    <div class="col-xs-5 col-md-5 col-lg-5 col-sm-5 col-xl-5 text-letf">
-                      <label class="field-label">FTE Round Off</label>
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="fteRoundOff" id="fteRoundOff" type="text" class="form-control form-control-sm border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="fteRoundOffBaseFte" id="fteRoundOffBaseFte" type="text" class="form-control form-control-sm border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="fteRoundOffFinalFte" id="fteRoundOffFinalFte" type="text" class="form-control form-control-sm border-primary">
-                    </div>
-                  </div>
-                  <div class="row form-group m-1 p-1">
-                    <div class="col-xs-5 col-md-5 col-lg-5 col-sm-5 col-xl-5 text-letf">
-                      <label class="field-label">FTE for Calculations</label>
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="fteForCalculation" id="fteForCalculation" type="text" class="form-control form-control-sm border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="fteForCalculationBaseFte" id="fteForCalculationBaseFte" type="text"
-                        class="form-control form-control-sm border-primary">
-                    </div>
-                    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2 col-xl-2">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="fteForCalculationFinalFte" id="fteForCalculationFinalFte" type="text"
-                        class="form-control form-control-sm border-primary">
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 
 <br>

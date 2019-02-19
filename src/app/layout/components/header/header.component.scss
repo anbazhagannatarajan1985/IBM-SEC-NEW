@@ -6,6 +6,7 @@ $ibm-primary-color: #095a8a;
 
 :host {
   .navbar {
+    // border-bottom: 1px solid $ibm-primary-color;
     background-color: $topnav-background-color;
     .navbar-brand {
       color: #095a8a;
