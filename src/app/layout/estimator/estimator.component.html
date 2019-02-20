@@ -1,4 +1,3 @@
-
 <div class="card card-default" style="border: none !important;">
   <div class="card-header card-header-ibm">
     <div class="row">
@@ -34,6 +33,7 @@
 
   <form [formGroup]="detailsForm" class="padding-bottom-form">
     <div class="row  border-primary">
+      <!-- details card 1 starts here -->
       <div class="col-xl-4 col-lg-4">
         <div class="card card-default border-primary ">
           <div class="card-header card-header-ibm">
@@ -42,47 +42,36 @@
             <div class="form-group ibm-form-group-field has-danger">
               <label class="field-label ibm-text-color" for="formId">Form ID #</label>
               <input [ngClass]="{'is-invalid': detailsFormSubmitted && df.formId.errors}" readonly formControlName="formId" id="formId"
-                type="text" name="formId" class="form-control form-control-sm " placeholder="Enter Form ID" data-error="Form Id is required.">
+                type="text" name="formId" class="form-control form-control-sm" placeholder="Enter Form ID" data-error="Form Id is required.">
             </div>
             <div class="form-group ibm-form-group-field">
               <label class="field-label ibm-text-color" for="formStatus">Form Status</label>
               <input [ngClass]="{'is-invalid': detailsFormSubmitted && df.formStatus.errors}" readonly formControlName="formStatus" id="formStatus"
                 type="text" name="email" class=" form-control form-control-sm" placeholder="Enter Form Status" data-error="Valid email is required.">
-              <!-- <div *ngIf="detailsFormSubmitted && df.formStatus.errors" class="invalid-feedback">
-                <div *ngIf="df.formStatus.errors.required">Form Status is required</div>
-              </div> -->
             </div>
             <div class="form-group ibm-form-group-field">
               <label class="field-label ibm-text-color" for="requestorName">Requestor</label>
               <input [ngClass]="{'is-invalid': detailsFormSubmitted && df.requestorName.errors}" readonly formControlName="requestorName"
                 id="requestorName" type="text" name="phone" class="form-control form-control-sm" placeholder="Enter Requestor">
-              <!-- <div *ngIf="detailsFormSubmitted && df.requestorName.errors" class="invalid-feedback">
-                <div *ngIf="df.requestorName.errors.required">Requestor Name is required</div>
-              </div> -->
             </div>
             <div class="form-group ibm-form-group-field">
               <label class="field-label ibm-text-color" for="requestorId">Requestor ID</label>
               <input [ngClass]="{'is-invalid': detailsFormSubmitted && df.requestorId.errors}" readonly formControlName="requestorId" id="requestorId"
                 type="text" name="phone" class="form-control form-control-sm" placeholder="Requestor ID">
-              <!-- <div *ngIf="detailsFormSubmitted && df.requestorId.errors" class="invalid-feedback">
-                <div *ngIf="df.requestorId.errors.required">Request ID is required</div>
-              </div> -->
             </div>
             <div class="form-group ibm-form-group-field">
               <label class="field-label ibm-text-color" for="riskRating">Risk Rating</label>
               <select [attr.disabled]="isView ? '' : null" [ngClass]="{'is-invalid': detailsFormSubmitted && df.riskRating.errors}" formControlName="riskRating"
-                id="riskRating" class="form-control form-control-sm " data-error="Risk Rating is required.">
+                id="riskRating" class="form-control form-control-sm" data-error="Risk Rating is required.">
                 <option value="" selected disabled>Select Risk Rating</option>
                 <option *ngFor="let riskRate of riskRatings" value="{{riskRate.id}}">{{riskRate.value}}</option>
               </select>
-              <!-- <div *ngIf="detailsFormSubmitted && df.riskRating.errors" class="invalid-feedback">
-                <div *ngIf="df.riskRating.errors.required">Risk Rating is required</div>
-              </div> -->
             </div>
           </div>
         </div>
       </div>
-
+      <!-- details card 1 ends here -->
+      <!-- details card 2 starts here -->
       <div class="col-xl-4 col-lg-4">
         <div class="card card-default border-primary">
           <div class="card-header card-header-ibm">
@@ -92,17 +81,11 @@
               <label class="field-label ibm-text-color" for="datePrepared">Date Prepared</label>
               <my-date-picker [disabled]="isView" formControlName="datePrepared" [ngClass]="{'is-invalid': detailsFormSubmitted && df.datePrepared.errors}"
                 name="datePrepared" [options]="myDatePickerOptions" [(ngModel)]="datePreparedModel"></my-date-picker>
-              <!-- <div *ngIf="detailsFormSubmitted && df.datePrepared.errors" class="invalid-feedback">
-                <div *ngIf="df.datePrepared.errors.required">Date Prepared # is required</div>
-              </div> -->
             </div>
             <div class="form-group ibm-form-group-field ibm-form-group-date-picker">
               <label class="field-label ibm-text-color" for="validTo">Valid To</label>
               <my-date-picker [disabled]="isView" formControlName="validTo" [ngClass]="{'is-invalid': detailsFormSubmitted && df.validTo.errors}"
                 name="validTo" [options]="myDatePickerOptions" [(ngModel)]="validToModel"></my-date-picker>
-              <!-- <div *ngIf="detailsFormSubmitted && df.validTo.errors" class="invalid-feedback">
-                <div *ngIf="df.validTo.errors.required">Valid To is required</div>
-              </div> -->
             </div>
             <div class="form-group ibm-form-group-field">
               <label class="field-label ibm-text-color" for="form_phone">Sales Connect #</label>
@@ -114,25 +97,20 @@
               <label class="field-label ibm-text-color" for="rfsNo">RFS #</label>
               <input [attr.disabled]="isView ? '' : null" formControlName="rfsNo" [ngClass]="{'is-invalid': detailsFormSubmitted && df.rfsNo.errors}"
                 id="rfsNo" type="tel" name="phone" class="form-control form-control-sm" placeholder="Enter RFS #">
-              <!-- <div *ngIf="detailsFormSubmitted && df.rfsNo.errors" class="invalid-feedback">
-                <div *ngIf="df.rfsNo.errors.required">RFS # is required</div>
-              </div> -->
             </div>
             <div class="form-group ibm-form-group-field">
               <label class="field-label ibm-text-color" for="region">Region</label>
               <select [ngClass]="{'is-invalid': detailsFormSubmitted && df.region.errors}" [attr.disabled]="isView ? '' : null" formControlName="region"
-                id="region" class="form-control form-control-sm " data-error="Region is required.">
+                id="region" class="form-control form-control-sm" data-error="Region is required.">
                 <option value="" selected disabled>Select Region</option>
                 <option *ngFor="let region of regionList" value="{{region.regionCode}}">{{region.regionName}}</option>
               </select>
-              <!-- <div *ngIf="detailsFormSubmitted && df.region.errors" class="invalid-feedback">
-                <div *ngIf="df.region.errors.required">Region is required</div>
-              </div> -->
             </div>
           </div>
         </div>
       </div>
-
+      <!-- details card 2 ends here -->
+      <!-- details card 3 starts here -->
       <div class="col-xl-4 col-lg-4">
         <div class="card card-default border-primary">
           <div class="card-header card-header-ibm">
@@ -141,7 +119,7 @@
             <div class="form-group ibm-form-group-field">
               <label class="field-label ibm-text-color" for="form_name">Customer/Account Name</label>
               <input [attr.disabled]="isView ? '' : null" formControlName="customerName" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerName.errors}"
-                id="customerName" type="text" name="customerName" class="form-control form-control-sm " placeholder="Enter Customer/Account Name"
+                id="customerName" type="text" name="customerName" class="form-control form-control-sm" placeholder="Enter Customer/Account Name"
                 required="required">
             </div>
             <div class="form-group ibm-form-group-field">
@@ -171,406 +149,224 @@
                 <option value="YES">YES</option>
                 <option value="NO">NO</option>
               </select>
-             
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- details card 2 ends here -->
+    </div>
+
+    <br>
+
+    <!-- card 2 starts here -->
+    <div class="card card-default border-primary ">
+      <div class="card-body p-1 m-1">
+
+        <div class="col-xl-12 col-lg-12" style="padding-left: 1px !important;padding-right: 1px !important;">
+          <div class="row  border-primary">
+            <div class="form-group ibm-form-group-field col-xl-3 col-lg-3">
+              <label class="field-label ibm-text-color" for="coe">COE</label>
+              <select [attr.disabled]="isView ? '' : null" formControlName="coe" [ngClass]="{'is-invalid': detailsFormSubmitted && df.coe.errors}"
+                id="coe" class="form-control form-control-sm">
+                <option value="" [attr.selected]="true">--Select--</option>
+                <option value="END_POINT">End Point</option>
+                <option value="DAS">DAS</option>
+                <option value="INFRA">INFRA</option>
+                <option value="IAM">IAM</option>
+                <option value="SIOC">SIOC</option>
+              </select>
+            </div>
+
+            <div class="form-group ibm-form-group-field col-xl-3 col-lg-3">
+              <label class="field-label ibm-text-color" for="coe">Endpoint Security Services</label>
+              <select [attr.disabled]="isView ? '' : null" formControlName="coe" [ngClass]="{'is-invalid': detailsFormSubmitted && df.coe.errors}"
+                id="coe" class="form-control form-control-sm">
+                <option value="" [attr.selected]="true">--Select-</option>
+                <option value="MALWARE">Malware</option>
+                <option value="WEB-SEC">Web Security</option>
+                <option value="EMAIL-SEC">Email Security</option>
+                <option value="VOL_MGMT">Volnerability Management</option>
+                <option value="DLP">DLP</option>
+
+              </select>
+            </div>
+
+            <div class="form-group ibm-form-group-field col-xl-3 col-lg-3">
+              <label class="field-label ibm-text-color" for="serviceWindow">Service Window for Operations</label>
+              <select [attr.disabled]="isView ? '' : null" formControlName="serviceWindow" [ngClass]="{'is-invalid': detailsFormSubmitted && ef.serviceWindow.errors}"
+                id="serviceWindow" class="form-control form-control-sm">
+                <option value="-" [attr.selected]="true">--Select--</option>
+                <option *ngFor="let serviceOperation of serviceOperations" value="{{serviceOperation.id}}">{{serviceOperation.value}}</option>
+              </select>
+              <div *ngIf="detailsFormSubmitted && ef.serviceWindow.errors" class="invalid-feedback">
+                <div *ngIf="ef.serviceWindow.errors.required">Service window for operations is required</div>
+              </div>
+            </div>
+
+            <div class="form-group ibm-form-group-field col-xl-3 col-lg-3">
+              <label class="field-label ibm-text-color" for="serviceScope">Service Scope</label>
+              <select [attr.disabled]="isView ? '' : null" formControlName="serviceScope" [ngClass]="{'is-invalid': detailsFormSubmitted && ef.serviceScope.errors}"
+                id="serviceScope" class="form-control form-control-sm" (change)="serviceScopeChange($event)">
+                <option value="-" [attr.selected]="true">--Select--</option>
+                <option *ngFor="let serviceScope of serviceScopes" value="{{serviceScope.id}}">{{serviceScope.value}}</option>
+              </select>
+              <div *ngIf="detailsFormSubmitted && ef.serviceScope.errors" class="invalid-feedback">
+                <div *ngIf="ef.serviceScope.errors.required">Service Scope is required</div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row ">
+            <div class="form-group ibm-form-group-field col-xl-3 col-lg-3">
+              <label class="field-label ibm-text-color">Vendor</label>
+              <select [attr.disabled]="isView ? '' : null" formControlName="vendor" [ngClass]="{'is-invalid': detailsFormSubmitted && sf.vendor.errors}"
+                id="vendor" class="form-control form-control-sm ">
+                <option value="" [attr.selected]="true">--Select--</option>
+                <option *ngFor="let vendor of vendorList" value="{{vendor.id}}">{{vendor.name}}</option>
+              </select>
+              <div *ngIf="detailsFormSubmitted && sf.vendor.errors" class="invalid-feedback">
+                <div *ngIf="sf.vendor.errors.required">Vendor is required</div>
+              </div>
+            </div>
+            <div class="form-group ibm-form-group-field col-xl-3 col-lg-3">
+              <label class="field-label ibm-text-color">Anti-Malware (Agent)</label>
+              <input [attr.disabled]="isView ? '' : null" formControlName="antiMalwareAgent" [ngClass]="{'is-invalid': detailsFormSubmitted && sf.antiMalwareAgent.errors}"
+                id="antiMalwareAgent" class="form-control form-control-sm " type="text">
+              <div *ngIf="detailsFormSubmitted && sf.antiMalwareAgent.errors" class="invalid-feedback">
+                <div *ngIf="sf.antiMalwareAgent.errors.required">Anti Malware Agent is required</div>
+              </div>
+            </div>
+            <div class="form-group ibm-form-group-field col-xl-3 col-lg-3">
+              <label class="field-label ibm-text-color">No of Consoles</label>
+              <input [attr.disabled]="isView ? '' : null" formControlName="noOfConsoles" [ngClass]="{'is-invalid': detailsFormSubmitted && sf.noOfConsoles.errors}"
+                id="noOfConsoles" class="form-control form-control-sm " type="text">
+              <div *ngIf="detailsFormSubmitted && sf.noOfConsoles.errors" class="invalid-feedback">
+                <div *ngIf="sf.noOfConsoles.errors.required">No Of Consoles is required</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
+    <!-- card 2 ends here -->
     <br>
+    <!-- run estimator card starts here -->
+    <div class="card card-default border-primary ">
+      <div class="card-body p-1 m-1">
 
-    
-        <div class="card card-default border-primary ">
-          <div class="card-body p-1 m-1">
-            
-              <div class="col-xl-12 col-lg-12">
-                  <div class="row  border-primary">
-                <div class="form-group ibm-form-group-field col-xl-3 col-lg-3">
-                  <label class="field-label ibm-text-color" for="coe">COE</label>
-                  <select [attr.disabled]="isView ? '' : null" formControlName="coe" [ngClass]="{'is-invalid': detailsFormSubmitted && df.coe.errors}"
-                    id="coe" class="form-control form-control-sm">
-                    <option value="" selected disabled>Select COE</option>
-                    <option value="END_POINT">End Point</option>
-                    <option value="DAS">DAS</option>
-                    <option value="INFRA">INFRA</option>
-                    <option value="IAM">IAM</option>
-                    <option value="SIOC">SIOC</option>
-                  </select>
-                </div>
-
-                <div class="form-group ibm-form-group-field col-xl-3 col-lg-3">
-                  <label class="field-label ibm-text-color" for="coe">Endpoint Security Services</label>
-                  <select [attr.disabled]="isView ? '' : null" formControlName="coe" [ngClass]="{'is-invalid': detailsFormSubmitted && df.coe.errors}"
-                    id="coe" class="form-control form-control-sm">
-                    <option value="" selected disabled>--Select-</option>
-                    <option value="MALWARE" >Malware</option>
-                    <option value="WEB-SEC">Web Security</option>
-                    <option value="EMAIL-SEC">Email Security</option>
-                    <option value="VOL_MGMT">Volnerability Management</option>
-                    <option value="DLP">DLP</option>
-                    
-                  </select>
-                </div>
-
-                <div class="form-group ibm-form-group-field col-xl-3 col-lg-3">
-                    <label class="field-label ibm-text-color" for="serviceWindow">Service Window for Operations</label>
-                    <select [attr.disabled]="isView ? '' : null" formControlName="serviceWindow" [ngClass]="{'is-invalid': detailsFormSubmitted && ef.serviceWindow.errors}"
-                      id="serviceWindow" class="form-control form-control-sm border-primary" >
-                      <option value="" selected disabled>--Select--</option>
-                      <option *ngFor="let serviceOperation of serviceOperations" value="{{serviceOperation.id}}">{{serviceOperation.value}}</option>
-                    </select>
-                    <div *ngIf="detailsFormSubmitted && ef.serviceWindow.errors" class="invalid-feedback">
-                      <div *ngIf="ef.serviceWindow.errors.required">Service window for operations is required</div>
-                    </div>
-                  </div>
-
-                  <div class="form-group ibm-form-group-field col-xl-3 col-lg-3">
-                    <label class="field-label ibm-text-color" for="serviceScope">Service Scope</label>
-                    <select [attr.disabled]="isView ? '' : null" formControlName="serviceScope" [ngClass]="{'is-invalid': detailsFormSubmitted && ef.serviceScope.errors}"
-                      id="serviceScope" class="form-control form-control-sm border-primary" (change)="serviceScopeChange($event)">
-                      <option value="">--Select--</option>
-                      <option *ngFor="let serviceScope of serviceScopes" value="{{serviceScope.id}}">{{serviceScope.value}}</option>
-                    </select>
-                    <div *ngIf="detailsFormSubmitted && ef.serviceScope.errors" class="invalid-feedback">
-                      <div *ngIf="ef.serviceScope.errors.required">Service Scope is required</div>
-                    </div>
-                  </div>
-
+        <div class="col-xl-12 col-lg-12" style="padding-left: 1px !important;padding-right: 1px !important;">
+          <div class="row">
+            <div class="col-xl-5 col-lg-5"></div>
+            <div class="col-xl-2 col-lg-2">
+              <button class="btn btn-block btn-sm btn-change">Run Estimator</button>
+            </div>
+            <div class="col-xl-5 col-lg-5"></div>
           </div>
+          <div class="row" style="padding-left: 50px !important;">
+            <table class="table p-5 borderless text-primary">
+              <thead style="border: none !important;">
+                <tr>
+                  <th scope="col" class="field-label ibm-text-color" style="width:  20% !important;"></th>
+                  <th scope="col" class="field-label ibm-text-color" style="width:  20% !important;">Transition and Transformation (TNT BAND)</th>
+                  <th scope="col" class="field-label ibm-text-color" style="width:  20% !important;">Steady State Band</th>
+                  <th scope="col" class="field-label ibm-text-color" style="width:  20% !important;">Hour</th>
+                  <th scope="col" class="field-label ibm-text-color" style="width:  20% !important;">Cost</th>
+                </tr>
+              </thead>
+              <tbody style="border: none !important;">
+                <tr>
+                  <th class="field-label ibm-text-color">B5</th>
+                  <td>
+                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
+                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                  </td>
+                  <td>
+                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
+                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                  </td>
+                  <td>
+                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
+                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                  </td>
+                  <td>
+                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
+                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                  </td>
+                </tr>
+                <tr>
+                  <th class="field-label ibm-text-color">B7</th>
+                  <td>
+                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
+                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                  </td>
+                  <td>
+                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
+                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                  </td>
+                  <td>
+                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
+                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                  </td>
+                  <td>
+                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
+                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                  </td>
+                </tr>
+                <tr>
+                  <th class="field-label ibm-text-color">B7 On Call</th>
+                  <td>
+                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
+                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                  </td>
+                  <td>
+                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
+                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                  </td>
+                  <td>
+                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
+                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                  </td>
+                  <td>
+                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
+                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                  </td>
+                </tr>
+                <tr>
+                  <th class="field-label ibm-text-color">Total</th>
+                  <th>
+                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
+                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                  </th>
+                  <th>
+                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
+                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                  </th>
+                  <th>
+                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
+                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                  </th>
+                  <th>
+                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
+                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+
+
         </div>
       </div>
     </div>
+    <!-- run estimator card ends here -->
   </form>
   <br>
-
-  <div class="row  border-primary ibm-text-color">
-    <!-- <div class="col-xl-2 col-lg-2">
-
-    </div> -->
-    <div class="col-xl-12 col-lg-12 row">
-      <p class="field-label">
-        <b>Select COE</b>
-      </p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <!-- <div class="col-xl-3 col-lg-3 row" style="padding-top: 5px;"> -->
-      <label class="switch-label field-label">End Point</label>
-      <ui-switch [disabled]="isView" size="small" switchColor="#fcfcfc" defaultBgColor="red" [checked]="isEndPoint" (change)="endPointSelected($event)"></ui-switch>
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      <!-- </div> -->
-      <!-- <div class="col-xl-2 col-lg-2 row" style="padding-top: 5px;"> -->
-      <label class="switch-label field-label">DAS</label>
-      <ui-switch [disabled]="isView" size="small" switchColor="#fcfcfc" defaultBgColor="red" [checked]="isDAS" (change)="dasSelected($event)"></ui-switch>
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      <!-- </div> -->
-      <!-- <div class="col-xl-2 col-lg-2 row" style="padding-top: 5px;"> -->
-      <label class="switch-label field-label">Infra</label>
-      <ui-switch [disabled]="isView" size="small" switchColor="#fcfcfc" defaultBgColor="red" [checked]="isInfra" (change)="infraSelected($event)"></ui-switch>
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      <!-- </div> -->
-      <!-- <div class="col-xl-2 col-lg-2 row" style="padding-top: 5px;"> -->
-      <label class="switch-label field-label">IAM</label>
-      <ui-switch [disabled]="isView" size="small" switchColor="#fcfcfc" defaultBgColor="red" [checked]="isIOM" (change)="iomSelected($event)"></ui-switch>
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      <!-- </div> -->
-      <!-- <div class="col-xl-2 col-lg-2 row" style="padding-top: 5px;"> -->
-      <label class="switch-label field-label">SIOC</label>
-      <ui-switch [disabled]="isView" size="small" switchColor="#fcfcfc" defaultBgColor="red" [checked]="isSIOC" (change)="siocSelected($event)"></ui-switch>
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      <!-- </div> -->
-      <div *ngIf="!isCoeValid" class="invalid-feedback">
-        <div>COE is required</div>
-      </div>
-    </div>
-  </div>
-
-  <div *ngIf="isEndPoint">
-    <br>
-    <div class="card card-default border-primary">
-      <div class="card-header card-header-ibm">Endpoint Security Services</div>
-      <div class="row ibm-text-color" style="padding-top: 5px;">
-        <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
-          <div class="card card-border-none">
-            <div class="card-body">
-              <div class=" col-md-12 col-sm-12 col-lg-12 col-xs-12 row">
-                <!-- <div class="col-xl-2 col-lg-2 row" style="padding-top: 5px;"> -->
-                <label class="switch-label field-label">Malware</label>
-                <ui-switch [disabled]="isView" size="small" switchColor="#fcfcfc" defaultBgColor="red" [checked]="isMalware" (change)="malwareSelected($event)"></ui-switch>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <!-- </div> -->
-
-                <!-- <div class="col-xl-2 col-lg-2 row" style="padding-top: 5px;"> -->
-                <label class="switch-label field-label">Web Security</label>
-                <ui-switch [disabled]="isView" size="small" switchColor="#fcfcfc" defaultBgColor="red" [checked]="isWebSecurity" (change)="webSecuritySelected($event)"></ui-switch>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <!-- </div> -->
-                <!-- <div class="col-xl-3 col-lg-3 row" style="padding-top: 5px;"> -->
-                <label class="switch-label field-label">Email Security</label>
-                <ui-switch [disabled]="isView" size="small" switchColor="#fcfcfc" defaultBgColor="red" [checked]="isEmailSecurity" (change)="emailSecuritySelected($event)"></ui-switch>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <!-- </div> -->
-                <!-- <div class="col-xl-4 col-lg-4 row" style="padding-top: 5px;"> -->
-                <label class="switch-label field-label">Volnerability Management</label>
-                <ui-switch [disabled]="isView" size="small" switchColor="#fcfcfc" defaultBgColor="red" [checked]="isVolunerability" (change)="VolunerabilitySelected($event)"></ui-switch>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <!-- </div> -->
-                <!-- <div class="col-xl-2 col-lg-2 row" style="padding-top: 5px;"> -->
-                <label class="switch-label field-label">DLP</label>
-                <ui-switch [disabled]="isView" size="small" switchColor="#fcfcfc" defaultBgColor="red" [checked]="isDlp" (change)="dlpSelected($event)"></ui-switch>
-                <!-- </div> -->
-                <div *ngIf="!isEndPointValid" class="invalid-feedback row">
-                  <div class="text-danger">End point security is required</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <div *ngIf="showEstimatorPanel" class="card card-default ibm-text-color" style="border: none !important;">
-
-    <br>
-    <form [formGroup]="estimatorForm">
-      <div class="row">
-        <div class="col-xl-4 col-lg-4">
-          <div class="card card-default border-primary">
-            <div class="card-header card-header-ibm">
-              {{servicePanelTitle}}
-            </div>
-            <div class="card-body">
-
-              <div class="row form-group">
-                <div class="col-xl-6 col-lg-6">
-                  <label class="field-label" for="serviceWindow">Service Window for Operations</label>
-                </div>
-                <div class="col-xl-6 col-lg-6">
-                  <select [attr.disabled]="isView ? '' : null" formControlName="serviceWindow" [ngClass]="{'is-invalid': detailsFormSubmitted && ef.serviceWindow.errors}"
-                    id="serviceWindow" class="form-control form-control-sm border-primary">
-                    <option value="-">--Select--</option>
-                    <option *ngFor="let serviceOperation of serviceOperations" value="{{serviceOperation.id}}">{{serviceOperation.value}}</option>
-                  </select>
-                  <div *ngIf="detailsFormSubmitted && ef.serviceWindow.errors" class="invalid-feedback">
-                    <div *ngIf="ef.serviceWindow.errors.required">Service window for operations is required</div>
-                  </div>
-                </div>
-              </div>
-              <div class="row form-group">
-                <div class="col-xl-6 col-lg-6">
-                  <label class="field-label" for="serviceScope">Service Scope</label>
-                </div>
-                <div class="col-xl-6 col-lg-6">
-                  <select [attr.disabled]="isView ? '' : null" formControlName="serviceScope" [ngClass]="{'is-invalid': detailsFormSubmitted && ef.serviceScope.errors}"
-                    id="serviceScope" class="form-control form-control-sm border-primary" (change)="serviceScopeChange($event)">
-                    <option value="">--Select--</option>
-                    <option *ngFor="let serviceScope of serviceScopes" value="{{serviceScope.id}}">{{serviceScope.value}}</option>
-                  </select>
-                  <div *ngIf="detailsFormSubmitted && ef.serviceScope.errors" class="invalid-feedback">
-                    <div *ngIf="ef.serviceScope.errors.required">Service Scope is required</div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-2 col-lg-2">
-          <div class="card card-border-none">
-            <div class="card-header" style="border: none !important; background-color: white !important;">
-
-            </div>
-            <div class="card-body">
-              <div class="row form-group">
-
-              </div>
-              <div class="row form-group">
-
-              </div>
-              <div class="row form-group">
-                <button class="btn btn-fill btn-sm btn-block btn-change">Run Estimator</button>
-              </div>
-              <div class="row form-group">
-                <button class="btn btn-fill btn-sm btn-block btn-change" (click)="resetAllFields()">Reset All Fields</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-xl-6 col-lg-6">
-          <div class="card card-default border-primary">
-            <div class="card-header card-header-ibm">
-              {{servicePanelTitle}} FTE Resource Count
-            </div>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-xl-4 col-lg-4">
-                  <div class="form-group row">
-                    <div class="col-xl-7 col-lg-7">
-                      <label class="sub-field-label">B5</label>
-                    </div>
-                    <div class="col-xl-5 col-lg-5">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="b5" id="b5" type="text" name="b5" class="form-control form-control-sm border-primary"
-                        placeholder="">
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <div class="col-xl-7 col-lg-7">
-                      <label class="sub-field-label">Base FTE</label>
-                    </div>
-                    <div class="col-xl-5 col-lg-5">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="baseFte" id="baseFte" type="text" name="baseFte" class="form-control form-control-sm border-primary"
-                        placeholder="">
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xl-4 col-lg-4">
-                  <div class="form-group row">
-                    <div class="col-xl-7 col-lg-7">
-                      <label class="sub-field-label">B7</label>
-                    </div>
-                    <div class="col-xl-5 col-lg-5">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="b7" id="b7" type="text" name="b7" class="form-control form-control-sm border-primary"
-                        placeholder="">
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <div class="col-xl-7 col-lg-7">
-                      <label class="sub-field-label">Total FTE</label>
-                    </div>
-                    <div class="col-xl-5 col-lg-5">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="totalFte" id="totalFte" type="text" name="totalFte" class="form-control form-control-sm border-primary"
-                        placeholder="">
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xl-4 col-lg-4">
-                  <div class="form-group row">
-                    <div class="col-xl-7 col-lg-7">
-                      <label class="sub-field-label">B7</label>
-                    </div>
-                    <div class="col-xl-5 col-lg-5">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="b7_1" id="b7_1" type="text" name="b7_1" class="form-control form-control-sm border-primary"
-                        placeholder="">
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <div class="col-xl-7 col-lg-7">
-                      <label class="sub-field-label">Transition FTE</label>
-                    </div>
-                    <div class="col-xl-5 col-lg-5">
-                      <input [attr.disabled]="isView ? '' : null" formControlName="transitionFte" id="transitionFte" type="text" name="transitionFte"
-                        class="form-control form-control-sm border-primary" placeholder="">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </form>
-
-    <br>
-    <br>
-  </div>
-
-
-  <div *ngIf="isServerScope" class="card card-default ibm-text-color" style="border: none !important;">
-    <div class="row">
-      <div class="col-xl-12 col-lg-12">
-        <div class="card card-default" style="border: none !important;">
-          <div class="card-header card-header-ibm" (click)="collapseServerDetailSelected()">Servers
-            <i *ngIf="!collapseServerDetails" class="fa fa-angle-double-down pull-right icon-25" aria-hidden="true"></i>
-            <i *ngIf="collapseServerDetails" class="fa fa-angle-double-left pull-right icon-25" aria-hidden="true"></i>
-          </div>
-          <br>
-          <form [formGroup]="serverForm">
-            <div class="row">
-              <div class="col-xl-5 col-lg-5">
-                <div class="card border-primary">
-                  <div class="card-header card-header-ibm">
-
-                  </div>
-
-                  <div class="card-body">
-                    <div class="row form-group">
-                      <div class="col-xl-6 col-lg-6">
-                        <label class="sub-field-label">Vendor</label>
-                      </div>
-                      <div class="col-xl-6 col-lg-6">
-                        <select [attr.disabled]="isView ? '' : null" formControlName="vendor" [ngClass]="{'is-invalid': detailsFormSubmitted && sf.vendor.errors}"
-                          id="vendor" class="form-control form-control-sm  border-primary">
-                          <option value="" selected disabled>--Select--</option>
-                          <option *ngFor="let vendor of vendorList" value="{{vendor.id}}">{{vendor.name}}</option>
-                        </select>
-                        <div *ngIf="detailsFormSubmitted && sf.vendor.errors" class="invalid-feedback">
-                          <div *ngIf="sf.vendor.errors.required">Vendor is required</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row form-group">
-                      <div class="col-xl-6 col-lg-6">
-                        <label class="sub-field-label">Anti-Malware (Agent)</label>
-                      </div>
-                      <div class="col-xl-6 col-lg-6">
-                        <input [attr.disabled]="isView ? '' : null" formControlName="antiMalwareAgent" [ngClass]="{'is-invalid': detailsFormSubmitted && sf.antiMalwareAgent.errors}"
-                          id="antiMalwareAgent" class="form-control form-control-sm  border-primary" type="text">
-                        <div *ngIf="detailsFormSubmitted && sf.antiMalwareAgent.errors" class="invalid-feedback">
-                          <div *ngIf="sf.antiMalwareAgent.errors.required">Anti Malware Agent is required</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row form-group">
-                      <div class="col-xl-6 col-lg-6">
-                        <label class="sub-field-label">Host IPS on Servers</label>
-                      </div>
-                      <div class="col-xl-6 col-lg-6">
-                        <ui-switch [disabled]="isView" size="small" switchColor="#fcfcfc" defaultBgColor="red" [checked]="hostIpsOnServer" (change)="hostIpsOnServerChanged($event)"></ui-switch>
-                      </div>
-                    </div>
-                    <div class="row form-group">
-                      <div class="col-xl-6 col-lg-6">
-                        <label class="sub-field-label">Host Firewall on Servers</label>
-                      </div>
-                      <div class="col-xl-6 col-lg-6">
-                        <ui-switch [disabled]="isView" size="small" switchColor="#fcfcfc" defaultBgColor="red" [checked]="hostFirewallOnServer" (change)="hostFirewallOnServerChanged($event)"></ui-switch>
-                      </div>
-                    </div>
-                    <div class="row form-group">
-                      <div class="col-xl-6 col-lg-6">
-                        <label class="sub-field-label">No of Consoles</label>
-                      </div>
-                      <div class="col-xl-6 col-lg-6">
-                        <input [attr.disabled]="isView ? '' : null" formControlName="noOfConsoles" [ngClass]="{'is-invalid': detailsFormSubmitted && sf.noOfConsoles.errors}"
-                          id="noOfConsoles" class="form-control form-control-sm  border-primary" type="text">
-                        <div *ngIf="detailsFormSubmitted && sf.noOfConsoles.errors" class="invalid-feedback">
-                          <div *ngIf="sf.noOfConsoles.errors.required">No Of Consoles is required</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-
-            </div>
-          </form>
-
-        </div>
-      </div>
-    </div>
-
-    <br>
-    <br>
-  </div>
-
 </div>
 
-<br>
-
-<div class="row col-lg-12 col-xl-12">
+<div class="row col-lg-12 col-xl-12" style="padding-left: 0px !important;padding-right: 0px !important;">
   <div class="col-lg-3 text-center">
     <button [routerLink]="['/home']" class="btn btn-fill btn-sm btn-block btn-change">Click here to go home page</button>
   </div>
@@ -578,12 +374,9 @@
     <button class="btn btn-fill btn-sm btn-block btn-change" (click)="open(termsAndConditonModel)">Terms & Conditions</button>
   </div>
   <div class="col-lg-3 text-center">
-    <!-- Button trigger modal -->
-    <!-- <a href="{{downloadURL}}?formId=IBMSEC-859413870"> -->
     <button type="button" class="btn btn-fill btn-sm btn-block btn-change" (click)="open(previewModal)">
       Click here to preview
     </button>
-    <!-- </a> -->
   </div>
   <div class="col-lg-3 text-center">
     <button [disabled]="isView" class="btn btn-fill btn-sm btn-block btn-change" (click)="saveForm()">Submit Form</button>

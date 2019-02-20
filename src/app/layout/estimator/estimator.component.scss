@@ -50,10 +50,11 @@ $card-header-text-color: #99befa;
 }
 
 .ibm-form-group-field {
-  margin-bottom: 5px !important; 
+  margin-bottom: 5px !important;
 }
+
 .ibm-form-group-date-picker {
-  margin-bottom: 1px !important; 
+  margin-bottom: 1px !important;
 }
 
 .switch.round label .lever {
@@ -215,4 +216,13 @@ $card-header-text-color: #99befa;
 
 .padding-bottom-form {
   padding-top: 10px !important;
+}
+
+.borderless td,
+.borderless th {
+  border: none;
+}
+
+.form-control-table {
+  width: 60% !important;
 }

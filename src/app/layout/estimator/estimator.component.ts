@@ -226,8 +226,8 @@ export class EstimatorComponent implements OnInit {
 
     this.estimatorForm = this.formBuilder.group({
       endPointSecurity: ['', Validators.required],
-      serviceWindow: ['', Validators.required],
-      serviceScope: ['', Validators.required],
+      serviceWindow: ['-', Validators.required],
+      serviceScope: ['-', Validators.required],
       b5: [''],
       b7: [''],
       b7_1: [''],
