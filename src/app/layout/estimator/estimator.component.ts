@@ -210,98 +210,21 @@ export class EstimatorComponent implements OnInit {
       formStatus: ['', Validators.required],
       requestorName: [localStorage.getItem('current_user_name'), Validators.required],
       requestorId: [localStorage.getItem('current_user'), Validators.required],
-      riskRating: ['', Validators.required],
-      datePrepared: ['', Validators.required],
-      validTo: ['', Validators.required],
-      salesConnectNo: ['', Validators.required],
-      rfsNo: ['', Validators.required],
-      region: ['', Validators.required],
-      customerName: ['', Validators.required],
-      customerId: ['', Validators.required],
-      salesId: ['', Validators.required],
-      approver: ['', Validators.required],
-      custom: ['', Validators.required],
-      coe: ['', Validators.required]
+      riskRating: [''],
+      datePrepared: [''],
+      validTo: [''],
+      salesConnectNo: [''],
+      rfsNo: [''],
+      region: [''],
+      customerName: [''],
+      customerId: [''],
+      salesId: [''],
+      approver: [''],
+      custom: [''],
+      coe: ['']
     });
 
-    this.estimatorForm = this.formBuilder.group({
-      endPointSecurity: ['', Validators.required],
-      serviceWindow: ['-', Validators.required],
-      serviceScope: ['-', Validators.required],
-      b5: [''],
-      b7: [''],
-      b7_1: [''],
-      baseFte: [''],
-      totalFte: [''],
-      transitionFte: [''],
-    });
-
-    this.serverForm = this.formBuilder.group({
-      vendor: ['', Validators.required],
-      antiMalwareAgent: ['', Validators.required],
-      hostIpsOnServers: [false],
-      hostFirewallOnServers: [false],
-      noOfConsoles: ['', Validators.required],
-      serverFactor: [''],
-      serverSupported: [''],
-      hipsEffort: [''],
-      hipsFwEffort: [''],
-      noOfConsoleEffort: [''],
-      fteRoundOff: [''],
-      fteForCalculation: [''],
-      serverFactorBaseFte: [''],
-      serverSupportedBaseFte: [''],
-      hipsEffortBaseFte: [''],
-      hipsFwEffortBaseFte: [''],
-      noOfConsoleEffortBaseFte: [''],
-      fteRoundOffBaseFte: [''],
-      fteForCalculationBaseFte: [''],
-      serverFactorFinalFte: [''],
-      serverSupportedFinalFte: [''],
-      hipsEffortFinalFte: [''],
-      hipsFwEffortFinalFte: [''],
-      noOfConsoleEffortFinalFte: [''],
-      fteRoundOffFinalFte: [''],
-      fteForCalculationFinalFte: [''],
-    });
-
-    this.workstationForm = this.formBuilder.group({
-      vendor: ['', Validators.required],
-      antiMalwareAgent: ['', Validators.required],
-      encryptionEndpoint: [false],
-      hostIpsOnServers: [false],
-      hostFirewallOnServers: [false],
-      deviceApplicationControl: [false],
-      noOfConsoles: ['', Validators.required],
-      serverFactor: [''],
-      serverSupported: [''],
-      encryptionEffort: [''],
-      hipsEffort: [''],
-      hipsFwEffort: [''],
-      deviceApplicationControlEffort: [''],
-      noOfConsoleEffort: [''],
-      fteRoundOff: [''],
-      fteForCalculation: [''],
-      serverFactorBaseFte: [''],
-      serverSupportedBaseFte: [''],
-      encryptionEffortBaseFte: [''],
-      hipsEffortBaseFte: [''],
-      hipsFwEffortBaseFte: [''],
-      deviceApplicationControlBaseFte: [''],
-      noOfConsoleEffortBaseFte: [''],
-      fteRoundOffBaseFte: [''],
-      fteForCalculationBaseFte: [''],
-      serverFactorFinalFte: [''],
-      serverSupportedFinalFte: [''],
-      encryptionEffortFinalFte: [''],
-      hipsEffortFinalFte: [''],
-      hipsFwEffortFinalFte: [''],
-      deviceApplicationControlFinalFte: [''],
-      noOfConsoleEffortFinalFte: [''],
-      fteRoundOffFinalFte: [''],
-      fteForCalculationFinalFte: [''],
-    });
-
+    
     this.termsAndConditionForm = this.formBuilder.group({
       termsAndCondition: [this.termsAndConditions.termsAndCondition, Validators.required]
     });
@@ -495,18 +418,6 @@ export class EstimatorComponent implements OnInit {
 
   get df() {
     return this.detailsForm.controls;
-  }
-
-  get ef() {
-    return this.estimatorForm.controls;
-  }
-
-  get sf() {
-    return this.serverForm.controls;
-  }
-
-  get wf() {
-    return this.workstationForm.controls;
   }
 
   loadForm(formId: string) {
