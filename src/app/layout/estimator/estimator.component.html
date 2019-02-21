@@ -63,7 +63,7 @@
               <label class="field-label ibm-text-color" for="riskRating">Risk Rating</label>
               <select [attr.disabled]="isView ? '' : null" [ngClass]="{'is-invalid': detailsFormSubmitted && df.riskRating.errors}" formControlName="riskRating"
                 id="riskRating" class="form-control form-control-sm" data-error="Risk Rating is required.">
-                <option value="" selected disabled>Select Risk Rating</option>
+                <option value="" [attr.selected]="true">Select Risk Rating</option>
                 <option *ngFor="let riskRate of riskRatings" value="{{riskRate.id}}">{{riskRate.value}}</option>
               </select>
             </div>
@@ -102,7 +102,7 @@
               <label class="field-label ibm-text-color" for="region">Region</label>
               <select [ngClass]="{'is-invalid': detailsFormSubmitted && df.region.errors}" [attr.disabled]="isView ? '' : null" formControlName="region"
                 id="region" class="form-control form-control-sm" data-error="Region is required.">
-                <option value="" selected disabled>Select Region</option>
+                <option value="" [attr.selected]="true">Select Region</option>
                 <option *ngFor="let region of regionList" value="{{region.regionCode}}">{{region.regionName}}</option>
               </select>
             </div>
@@ -137,7 +137,7 @@
               <label class="field-label ibm-text-color" for="approver">Approver</label>
               <select [attr.disabled]="isView ? '' : null" formControlName="approver" [ngClass]="{'is-invalid': detailsFormSubmitted && df.approver.errors}"
                 id="approver" class="form-control form-control-sm">
-                <option value="" selected disabled>Select Approver</option>
+                <option value="" [attr.selected]="true">Select Approver</option>
                 <option *ngFor="let user of approverList" value="{{user.username}}">{{user.fullName}}</option>
               </select>
             </div>
@@ -145,7 +145,7 @@
               <label class="field-label ibm-text-color" for="custom">Custom</label>
               <select [attr.disabled]="isView ? '' : null" formControlName="custom" [ngClass]="{'is-invalid': detailsFormSubmitted && df.custom.errors}"
                 id="custom" class="form-control form-control-sm">
-                <option value="" selected disabled>Select Custom</option>
+                <option value="" [attr.selected]="true">Select Custom</option>
                 <option value="YES">YES</option>
                 <option value="NO">NO</option>
               </select>
@@ -180,7 +180,7 @@
 
             <div class="form-group ibm-form-group-field col-xl-3 col-lg-3">
               <label class="field-label ibm-text-color" for="coe">Endpoint Security Services</label>
-              <select [attr.disabled]="isView ? '' : null" formControlName="coe" [ngClass]="{'is-invalid': detailsFormSubmitted && df.coe.errors}"
+              <select [attr.disabled]="isView ? '' : null" formControlName="endPoint" [ngClass]="{'is-invalid': detailsFormSubmitted && df.coe.errors}"
                 id="coe" class="form-control form-control-sm">
                 <option value="" [attr.selected]="true">--Select-</option>
                 <option value="MALWARE">Malware</option>
@@ -207,7 +207,7 @@
             <div class="form-group ibm-form-group-field col-xl-3 col-lg-3">
               <label class="field-label ibm-text-color" for="serviceScope">Service Scope</label>
               <select [attr.disabled]="isView ? '' : null" formControlName="serviceScope" [ngClass]="{'is-invalid': detailsFormSubmitted && ef.serviceScope.errors}"
-                id="serviceScope" class="form-control form-control-sm" (change)="serviceScopeChange($event)">
+                id="serviceScope" class="form-control form-control-sm">
                 <option value="-" [attr.selected]="true">--Select--</option>
                 <option *ngFor="let serviceScope of serviceScopes" value="{{serviceScope.id}}">{{serviceScope.value}}</option>
               </select>
@@ -230,11 +230,11 @@
               </div>
             </div>
             <div class="form-group ibm-form-group-field col-xl-3 col-lg-3">
-              <label class="field-label ibm-text-color">Anti-Malware (Agent)</label>
-              <input [attr.disabled]="isView ? '' : null" formControlName="antiMalwareAgent" [ngClass]="{'is-invalid': detailsFormSubmitted && sf.antiMalwareAgent.errors}"
-                id="antiMalwareAgent" class="form-control form-control-sm " type="text">
-              <div *ngIf="detailsFormSubmitted && sf.antiMalwareAgent.errors" class="invalid-feedback">
-                <div *ngIf="sf.antiMalwareAgent.errors.required">Anti Malware Agent is required</div>
+              <label class="field-label ibm-text-color">No of Servers</label>
+              <input [attr.disabled]="isView ? '' : null" formControlName="noOfServers" [ngClass]="{'is-invalid': detailsFormSubmitted && sf.noOfServers.errors}"
+                id="noOfServers" class="form-control form-control-sm " type="text">
+              <div *ngIf="detailsFormSubmitted && sf.noOfServers.errors" class="invalid-feedback">
+                <div *ngIf="sf.noOfServers.errors.required">No Of Servers is required</div>
               </div>
             </div>
             <div class="form-group ibm-form-group-field col-xl-3 col-lg-3">
@@ -252,7 +252,7 @@
     <!-- card 2 ends here -->
     <br>
     <!-- run estimator card starts here -->
-    <div class="card card-default border-primary ">
+    <div *ngIf="userType !== requestor" class="card card-default border-primary ">
       <div class="card-body p-1 m-1">
 
         <div class="col-xl-12 col-lg-12" style="padding-left: 1px !important;padding-right: 1px !important;">
@@ -265,7 +265,7 @@
           </div>
           <div class="row" style="padding-left: 50px !important;">
             <table class="table p-5 borderless text-primary">
-              <thead style="border: none !important;" >
+              <thead style="border: none !important;">
                 <tr>
                   <th scope="col" class="field-label ibm-text-color" style="width:  20% !important;"></th>
                   <th scope="col" class="field-label ibm-text-color" style="width:  20% !important;">Transition and Transformation (TNT BAND)</th>
@@ -278,77 +278,78 @@
                 <tr>
                   <th class="field-label ibm-text-color text-right">B5</th>
                   <td>
-                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
-                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                    <input [attr.disabled]="isView ? '' : null" formControlName="b5Tnt" [ngClass]="{'is-invalid': detailsFormSubmitted && df.b5Tnt.errors}"
+                      id="b5Tnt" type="text" name="b5Tnt" class="form-control form-control-sm form-control-table">
                   </td>
                   <td>
-                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
-                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                    <input [attr.disabled]="isView ? '' : null" formControlName="b5Ssb" [ngClass]="{'is-invalid': detailsFormSubmitted && df.b5Ssb.errors}"
+                      id="b5Ssb" type="text" name="b5Ssb" class="form-control form-control-sm form-control-table">
                   </td>
                   <td>
-                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
-                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                    <input [attr.disabled]="isView ? '' : null" formControlName="b5Hour" [ngClass]="{'is-invalid': detailsFormSubmitted && df.b5Hour.errors}"
+                      id="b5Hour" type="text" name="b5Hour" class="form-control form-control-sm form-control-table">
                   </td>
                   <td>
-                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
-                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                    <input [attr.disabled]="isView ? '' : null" formControlName="b5Cost" [ngClass]="{'is-invalid': detailsFormSubmitted && df.b5Cost.errors}"
+                      id="b5Cost" type="text" name="b5Cost" class="form-control form-control-sm form-control-table">
                   </td>
                 </tr>
                 <tr>
                   <th class="field-label ibm-text-color text-right">B7</th>
                   <td>
-                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
-                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                    <input [attr.disabled]="isView ? '' : null" formControlName="b7Tnt" [ngClass]="{'is-invalid': detailsFormSubmitted && df.b7Tnt.errors}"
+                      id="b7Tnt" type="text" name="b7Tnt" class="form-control form-control-sm form-control-table">
                   </td>
                   <td>
-                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
-                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                    <input [attr.disabled]="isView ? '' : null" formControlName="b7Ssb" [ngClass]="{'is-invalid': detailsFormSubmitted && df.b7Ssb.errors}"
+                      id="b7Ssb" type="text" name="b7Ssb" class="form-control form-control-sm form-control-table">
                   </td>
                   <td>
-                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
-                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                    <input [attr.disabled]="isView ? '' : null" formControlName="b7Hour" [ngClass]="{'is-invalid': detailsFormSubmitted && df.b7Hour.errors}"
+                      id="b7Hour" type="text" name="b7Hour" class="form-control form-control-sm form-control-table">
                   </td>
                   <td>
-                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
-                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                    <input [attr.disabled]="isView ? '' : null" formControlName="b7Cost" [ngClass]="{'is-invalid': detailsFormSubmitted && df.b7Cost.errors}"
+                      id="b7Cost" type="text" name="b7Cost" class="form-control form-control-sm form-control-table">
                   </td>
                 </tr>
                 <tr>
                   <th class="field-label ibm-text-color text-right">B7 On Call</th>
                   <td>
-                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
-                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                    <input [attr.disabled]="isView ? '' : null" formControlName="b7OnCallTnt" [ngClass]="{'is-invalid': detailsFormSubmitted && df.b7OnCallTnt.errors}"
+                      id="b7OnCallTnt" type="text" name="b7OnCallTnt" class="form-control form-control-sm form-control-table">
                   </td>
                   <td>
-                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
-                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                    <input [attr.disabled]="isView ? '' : null" formControlName="b7OnCallSsb" [ngClass]="{'is-invalid': detailsFormSubmitted && df.b7OnCallSsb.errors}"
+                      id="b7OnCallSsb" type="text" name="b7OnCallSsb" class="form-control form-control-sm form-control-table">
+                  </td>
+
+                  <td>
+                    <input [attr.disabled]="isView ? '' : null" formControlName="b7OnCallHour" [ngClass]="{'is-invalid': detailsFormSubmitted && df.b7OnCallHour.errors}"
+                      id="b7OnCallHour" type="text" name="b7OnCallHour" class="form-control form-control-sm form-control-table">
                   </td>
                   <td>
-                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
-                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
-                  </td>
-                  <td>
-                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
-                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                    <input [attr.disabled]="isView ? '' : null" formControlName="b7OnCallCost" [ngClass]="{'is-invalid': detailsFormSubmitted && df.b7OnCallCost.errors}"
+                      id="b7OnCallCost" type="text" name="b7OnCallCost" class="form-control form-control-sm form-control-table">
                   </td>
                 </tr>
                 <tr>
                   <th class="field-label ibm-text-color text-right">Total</th>
                   <th>
-                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
-                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                    <input [attr.disabled]="isView ? '' : null" formControlName="totalTnt" [ngClass]="{'is-invalid': detailsFormSubmitted && df.totalTnt.errors}"
+                      id="totalTnt" type="text" name="totalTnt" class="form-control form-control-sm form-control-table">
                   </th>
                   <th>
-                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
-                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                    <input [attr.disabled]="isView ? '' : null" formControlName="totalSsb" [ngClass]="{'is-invalid': detailsFormSubmitted && df.totalSsb.errors}"
+                      id="totalSsb" type="text" name="totalSsb" class="form-control form-control-sm form-control-table">
                   </th>
                   <th>
-                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
-                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                    <input [attr.disabled]="isView ? '' : null" formControlName="totalHour" [ngClass]="{'is-invalid': detailsFormSubmitted && df.totalHour.errors}"
+                      id="totalHour" type="text" name="totalHour" class="form-control form-control-sm form-control-table">
                   </th>
                   <th>
-                    <input [attr.disabled]="isView ? '' : null" formControlName="customerId" [ngClass]="{'is-invalid': detailsFormSubmitted && df.customerId.errors}"
-                      id="customerId" type="text" name="customerId" class="form-control form-control-sm form-control-table">
+                    <input [attr.disabled]="isView ? '' : null" formControlName="totalCost" [ngClass]="{'is-invalid': detailsFormSubmitted && df.totalCost.errors}"
+                      id="totalCost" type="text" name="totalCost" class="form-control form-control-sm form-control-table">
                   </th>
                 </tr>
               </tbody>

@@ -18,6 +18,9 @@ export class FormListComponent implements OnInit {
   public userType: string = '';
   userSubscription: Subscription;
   public isPendingListPage: boolean = false;
+  approverType: string = AppConfig.APPROVER_TYPE;
+  tsaType: string = AppConfig.TSA_TYPE;
+  requestorType: string = AppConfig.REQUESTOR_TYPE;
 
   constructor(private serviceProvider: ServiceProvider, private _Activatedroute: ActivatedRoute) {
     this.userType = localStorage.getItem('user_type');

@@ -26,27 +26,29 @@ declare var $: any;
 export class EstimatorComponent implements OnInit {
   userSubscription: Subscription;
 
+  userType: string = '';
+  requestor: string = AppConfig.REQUESTOR_TYPE;
   closeResult: string;
-  collapseCustomerDetails = false;
-  collapseEstimatorDetails = false;
-  collapseServerDetails = true;
-  collapseWorkstationDetails = true;
+  // collapseCustomerDetails = false;
+  // collapseEstimatorDetails = false;
+  // collapseServerDetails = true;
+  // collapseWorkstationDetails = true;
   showEstimatorPanel = false;
-  servicePanelTitle = '';
-  isEndPoint = false;
-  isDAS = false;
-  isInfra = false;
-  isIOM = false;
-  isSIOC = false;
+  // servicePanelTitle = '';
+  // isEndPoint = false;
+  // isDAS = false;
+  // isInfra = false;
+  // isIOM = false;
+  // isSIOC = false;
 
-  isMalware = false;
-  isWebSecurity = false;
-  isEmailSecurity = false;
-  isVolunerability = false;
-  isDlp = false;
+  // isMalware = false;
+  // isWebSecurity = false;
+  // isEmailSecurity = false;
+  // isVolunerability = false;
+  // isDlp = false;
 
-  isServerScope = false;
-  isWorkstationScope = false;
+  // isServerScope = false;
+  // isWorkstationScope = false;
 
   serviceOperations: any[] = AppConfig.SERVICE_WINDOW_OPERATIONS;
   serviceScopes: any[] = AppConfig.SERVICE_SCOPES;
@@ -54,30 +56,30 @@ export class EstimatorComponent implements OnInit {
   isToggleSearchClicked = false;
   approverList: models.UserModel = {};
   regionList: models.RegionModel = {};
-  vendorList: any = {};
-  riskRatings: any = {};
+  vendorList: any = [];
+  riskRatings: any = [];
 
-  estimatorForm: FormGroup;
+  // estimatorForm: FormGroup;
   detailsForm: FormGroup;
-  serverForm: FormGroup;
-  workstationForm: FormGroup;
+  // serverForm: FormGroup;
+  // workstationForm: FormGroup;
   termsAndConditionForm: FormGroup;
   searchForm: FormGroup;
 
   detailsFormSubmitted = false;
   currentForm: models.FormDetailModel = {};
   estimatorModel: models.EstimatorModel = {};
-  serverModel: models.ServerModel = {};
-  workstationModel: models.WorkstationModel = {};
+  // serverModel: models.ServerModel = {};
+  // workstationModel: models.WorkstationModel = {};
   nextFormId: string;
-  encryptionEndpoint: boolean = false;
-  hostIpsOnServer: boolean = false;
-  hostFirewallOnServer: boolean = false;
-  hostIpsOnWorkstation: boolean = false;
-  hostFirewallOnWorkstation: boolean = false;
-  deviceApplicationControl: boolean = false;
-  isCoeValid: boolean = true;
-  isEndPointValid: boolean = true;
+  // encryptionEndpoint: boolean = false;
+  // hostIpsOnServer: boolean = false;
+  // hostFirewallOnServer: boolean = false;
+  // hostIpsOnWorkstation: boolean = false;
+  // hostFirewallOnWorkstation: boolean = false;
+  // deviceApplicationControl: boolean = false;
+  // isCoeValid: boolean = true;
+  // isEndPointValid: boolean = true;
   downloadURL: string;
   termsAndConditions: models.TermsAndConditionModel = {};
   editTermsAndConditionsClicked: boolean = false;
@@ -114,6 +116,8 @@ export class EstimatorComponent implements OnInit {
   constructor(private modalService: NgbModal, private formBuilder: FormBuilder,
     private serviceProvider: ServiceProvider, private datePipe: DatePipe,
     private _Activatedroute: ActivatedRoute) {
+
+    this.userType = localStorage.getItem('user_type');
 
     this.downloadURL = AppConfig.APP_URL + '/form/download-form';
     this.getUsersByType(AppConfig.APPROVER_TYPE);
@@ -221,171 +225,197 @@ export class EstimatorComponent implements OnInit {
       salesId: [''],
       approver: [''],
       custom: [''],
-      coe: ['']
+      coe: [''],
+      endPoint: [''],
+      serviceWindow: [''],
+      serviceScope: [''],
+      vendor: [''],
+      noOfServers: [''],
+      noOfConsoles: [''],
+      b5Tnt: [''],
+      b7Tnt: [''],
+      b7OnCallTnt: [''],
+      totalTnt: [''],
+      b5Ssb: [''],
+      b7Ssb: [''],
+      b7OnCallSsb: [''],
+      totalSsb: [''],
+      b5Hour: [''],
+      b7Hour: [''],
+      b7OnCallHour: [''],
+      totalHour: [''],
+      b5Cost: [''],
+      b7Cost: [''],
+      b7OnCallCost: [''],
+      totalCost: [''],
     });
 
-    
+
     this.termsAndConditionForm = this.formBuilder.group({
       termsAndCondition: [this.termsAndConditions.termsAndCondition, Validators.required]
     });
   }
 
-  get f() { return this.estimatorForm.controls; }
-
   onSubmit() { }
 
-  collapseCustomerDetailSelected() {
-    this.collapseCustomerDetails = !this.collapseCustomerDetails;
+
+  get df() {
+    return this.detailsForm.controls;
   }
 
-  collapseEstimatorSelected() {
-    this.collapseEstimatorDetails = !this.collapseEstimatorDetails;
-  }
 
-  collapseServerDetailSelected() {
-    this.collapseServerDetails = !this.collapseServerDetails;
-  }
-  collapseWorkstationDetailSelected() {
-    this.collapseWorkstationDetails = !this.collapseWorkstationDetails;
-  }
+  // collapseCustomerDetailSelected() {
+  //   this.collapseCustomerDetails = !this.collapseCustomerDetails;
+  // }
 
-  endPointSelected(event: boolean) {
-    this.detailsForm.get('coe').setValue('END_POINT');
-    this.setAction(event, false, false, false, false);
-    this.setServiceAction(false, false, false, false, false);
-  }
+  // collapseEstimatorSelected() {
+  //   this.collapseEstimatorDetails = !this.collapseEstimatorDetails;
+  // }
 
-  dasSelected(event: boolean) {
-    this.detailsForm.get('coe').setValue('DAS');
-    this.setAction(false, event, false, false, false);
-    this.setServiceAction(false, false, false, false, false);
-  }
+  // collapseServerDetailSelected() {
+  //   this.collapseServerDetails = !this.collapseServerDetails;
+  // }
+  // collapseWorkstationDetailSelected() {
+  //   this.collapseWorkstationDetails = !this.collapseWorkstationDetails;
+  // }
 
-  infraSelected(event: boolean) {
-    this.detailsForm.get('coe').setValue('INFRA');
-    this.setAction(false, false, event, false, false);
-    this.setServiceAction(false, false, false, false, false);
-  }
+  // endPointSelected(event: boolean) {
+  //   this.detailsForm.get('coe').setValue('END_POINT');
+  //   this.setAction(event, false, false, false, false);
+  //   this.setServiceAction(false, false, false, false, false);
+  // }
 
-  iomSelected(event: boolean) {
-    this.detailsForm.get('coe').setValue('IOM');
-    this.setAction(false, false, false, event, false);
-    this.setServiceAction(false, false, false, false, false);
-  }
+  // dasSelected(event: boolean) {
+  //   this.detailsForm.get('coe').setValue('DAS');
+  //   this.setAction(false, event, false, false, false);
+  //   this.setServiceAction(false, false, false, false, false);
+  // }
 
-  siocSelected(event: boolean) {
-    this.detailsForm.get('coe').setValue('SIOC');
-    this.setAction(false, false, false, false, event);
-    this.setServiceAction(false, false, false, false, false);
-  }
+  // infraSelected(event: boolean) {
+  //   this.detailsForm.get('coe').setValue('INFRA');
+  //   this.setAction(false, false, event, false, false);
+  //   this.setServiceAction(false, false, false, false, false);
+  // }
 
-  malwareSelected(event: boolean) {
-    this.setServiceAction(event, false, false, false, false);
-  }
+  // iomSelected(event: boolean) {
+  //   this.detailsForm.get('coe').setValue('IOM');
+  //   this.setAction(false, false, false, event, false);
+  //   this.setServiceAction(false, false, false, false, false);
+  // }
 
-  webSecuritySelected(event: boolean) {
-    this.setServiceAction(false, event, false, false, false);
-  }
+  // siocSelected(event: boolean) {
+  //   this.detailsForm.get('coe').setValue('SIOC');
+  //   this.setAction(false, false, false, false, event);
+  //   this.setServiceAction(false, false, false, false, false);
+  // }
 
-  emailSecuritySelected(event: boolean) {
-    this.setServiceAction(false, false, event, false, false);
-  }
+  // malwareSelected(event: boolean) {
+  //   this.setServiceAction(event, false, false, false, false);
+  // }
 
-  VolunerabilitySelected(event: boolean) {
-    this.setServiceAction(false, false, false, event, false);
-  }
+  // webSecuritySelected(event: boolean) {
+  //   this.setServiceAction(false, event, false, false, false);
+  // }
 
-  dlpSelected(event: boolean) {
-    this.setServiceAction(false, false, false, false, event);
-  }
+  // emailSecuritySelected(event: boolean) {
+  //   this.setServiceAction(false, false, event, false, false);
+  // }
 
-  setAction(isEndPoint: boolean, isDAS: boolean, isInfra: boolean, isIOM: boolean, isSIOC: boolean) {
-    this.isEndPoint = isEndPoint;
-    this.isDAS = isDAS;
-    this.isInfra = isInfra;
-    this.isIOM = isIOM;
-    this.isSIOC = isSIOC;
-  }
+  // VolunerabilitySelected(event: boolean) {
+  //   this.setServiceAction(false, false, false, event, false);
+  // }
 
-  setServiceAction(isMalware: boolean, isWebSecurity: boolean, isEmailSecurity: boolean, isVolunerability: boolean, isDlp: boolean) {
-    this.isMalware = isMalware;
-    this.isWebSecurity = isWebSecurity;
-    this.isEmailSecurity = isEmailSecurity;
-    this.isVolunerability = isVolunerability;
-    this.isDlp = isDlp;
-    this.showEstimatorPanel = true;
+  // dlpSelected(event: boolean) {
+  //   this.setServiceAction(false, false, false, false, event);
+  // }
 
-    if (isMalware) {
-      this.estimatorForm.get('endPointSecurity').setValue('MALWARE');
-      this.servicePanelTitle = 'Malware';
-    } else if (isWebSecurity) {
-      this.estimatorForm.get('endPointSecurity').setValue('WEB-SEC');
-      this.servicePanelTitle = 'Web Security';
-    } else if (isEmailSecurity) {
-      this.estimatorForm.get('endPointSecurity').setValue('EMAIL-SEC');
-      this.servicePanelTitle = 'Email Security';
-    } else if (isVolunerability) {
-      this.estimatorForm.get('endPointSecurity').setValue('VOL_MGMT');
-      this.servicePanelTitle = 'Volunerability Management';
-    } else if (isDlp) {
-      this.estimatorForm.get('endPointSecurity').setValue('DLP');
-      this.servicePanelTitle = 'DLP';
-    } else {
-      this.showEstimatorPanel = false;
-    }
-  }
+  // setAction(isEndPoint: boolean, isDAS: boolean, isInfra: boolean, isIOM: boolean, isSIOC: boolean) {
+  //   this.isEndPoint = isEndPoint;
+  //   this.isDAS = isDAS;
+  //   this.isInfra = isInfra;
+  //   this.isIOM = isIOM;
+  //   this.isSIOC = isSIOC;
+  // }
 
-  serviceScopeChange() {
-    const scope = this.f.serviceScope.value;
-    if (!!scope) {
-      if (scope === 'SERVER') {
-        this.isServerScope = true;
-        this.isWorkstationScope = false;
-      } else if (scope === 'WORKSTATION') {
-        this.isWorkstationScope = true;
-        this.isServerScope = false;
-      } else if (scope === 'SERVER-WORKSTATION') {
-        this.isServerScope = true;
-        this.isWorkstationScope = true;
-      } else {
-        this.isServerScope = false;
-        this.isWorkstationScope = false;
-      }
-    } else {
-      this.isServerScope = false;
-      this.isWorkstationScope = false;
-    }
-  }
+  // setServiceAction(isMalware: boolean, isWebSecurity: boolean, isEmailSecurity: boolean, isVolunerability: boolean, isDlp: boolean) {
+  //   this.isMalware = isMalware;
+  //   this.isWebSecurity = isWebSecurity;
+  //   this.isEmailSecurity = isEmailSecurity;
+  //   this.isVolunerability = isVolunerability;
+  //   this.isDlp = isDlp;
+  //   this.showEstimatorPanel = true;
 
-  hostIpsOnServerChanged(event: any) {
-    this.hostIpsOnServer = event;
-    this.serverForm.get('hostIpsOnServers').setValue(event);
-  }
+  //   if (isMalware) {
+  //     this.estimatorForm.get('endPointSecurity').setValue('MALWARE');
+  //     this.servicePanelTitle = 'Malware';
+  //   } else if (isWebSecurity) {
+  //     this.estimatorForm.get('endPointSecurity').setValue('WEB-SEC');
+  //     this.servicePanelTitle = 'Web Security';
+  //   } else if (isEmailSecurity) {
+  //     this.estimatorForm.get('endPointSecurity').setValue('EMAIL-SEC');
+  //     this.servicePanelTitle = 'Email Security';
+  //   } else if (isVolunerability) {
+  //     this.estimatorForm.get('endPointSecurity').setValue('VOL_MGMT');
+  //     this.servicePanelTitle = 'Volunerability Management';
+  //   } else if (isDlp) {
+  //     this.estimatorForm.get('endPointSecurity').setValue('DLP');
+  //     this.servicePanelTitle = 'DLP';
+  //   } else {
+  //     this.showEstimatorPanel = false;
+  //   }
+  // }
 
-  hostFirewallOnServerChanged(event: any) {
-    this.hostFirewallOnServer = event;
-    this.serverForm.get('hostFirewallOnServers').setValue(event);
-  }
+  // serviceScopeChange() {
+  //   const scope = this.f.serviceScope.value;
+  //   if (!!scope) {
+  //     if (scope === 'SERVER') {
+  //       this.isServerScope = true;
+  //       this.isWorkstationScope = false;
+  //     } else if (scope === 'WORKSTATION') {
+  //       this.isWorkstationScope = true;
+  //       this.isServerScope = false;
+  //     } else if (scope === 'SERVER-WORKSTATION') {
+  //       this.isServerScope = true;
+  //       this.isWorkstationScope = true;
+  //     } else {
+  //       this.isServerScope = false;
+  //       this.isWorkstationScope = false;
+  //     }
+  //   } else {
+  //     this.isServerScope = false;
+  //     this.isWorkstationScope = false;
+  //   }
+  // }
 
-  encryptionEndpointChanged(event: any) {
-    this.encryptionEndpoint = event;
-    this.workstationForm.get('encryptionEndpoint').setValue(event);
-  }
+  // hostIpsOnServerChanged(event: any) {
+  //   this.hostIpsOnServer = event;
+  //   this.serverForm.get('hostIpsOnServers').setValue(event);
+  // }
 
-  hostIpsOnWorkStationChanged(event: any) {
-    this.hostIpsOnWorkstation = event;
-    this.workstationForm.get('hostIpsOnServers').setValue(event);
-  }
+  // hostFirewallOnServerChanged(event: any) {
+  //   this.hostFirewallOnServer = event;
+  //   this.serverForm.get('hostFirewallOnServers').setValue(event);
+  // }
 
-  hostFirewallOnWorkStationChanged(event: any) {
-    this.hostFirewallOnWorkstation = event;
-    this.workstationForm.get('hostFirewallOnServers').setValue(event);
-  }
+  // encryptionEndpointChanged(event: any) {
+  //   this.encryptionEndpoint = event;
+  //   this.workstationForm.get('encryptionEndpoint').setValue(event);
+  // }
 
-  deviceApplicationControlChanged(event: any) {
-    this.deviceApplicationControl = event;
-    this.workstationForm.get('deviceApplicationControl').setValue(event);
-  }
+  // hostIpsOnWorkStationChanged(event: any) {
+  //   this.hostIpsOnWorkstation = event;
+  //   this.workstationForm.get('hostIpsOnServers').setValue(event);
+  // }
+
+  // hostFirewallOnWorkStationChanged(event: any) {
+  //   this.hostFirewallOnWorkstation = event;
+  //   this.workstationForm.get('hostFirewallOnServers').setValue(event);
+  // }
+
+  // deviceApplicationControlChanged(event: any) {
+  //   this.deviceApplicationControl = event;
+  //   this.workstationForm.get('deviceApplicationControl').setValue(event);
+  // }
 
 
   toggleSearch() {
@@ -416,9 +446,6 @@ export class EstimatorComponent implements OnInit {
     );
   }
 
-  get df() {
-    return this.detailsForm.controls;
-  }
 
   loadForm(formId: string) {
     this.serviceProvider.getFormByFormId(formId).subscribe(
@@ -441,25 +468,21 @@ export class EstimatorComponent implements OnInit {
     this.currentForm.formStatus = '2';
     const status = EstimatorConfig.getFormStatusbyId('2');
     if (!!status) {
-      this.detailsForm.get('formStatus').setValue(status.value);
+      this.detailsForm.get('formStatus').setValue(status.id);
     }
 
-    if (!this.detailsForm.get('coe').valid) {
-      this.isCoeValid = false;
-    }
+    // if (!this.detailsForm.get('coe').valid) {
+    //   this.isCoeValid = false;
+    // }
 
-    if (!this.estimatorForm.get('endPointSecurity').valid) {
-      this.isEndPointValid = false;
-    }
-    // if (!this.detailsForm.valid || !this.estimatorForm.valid || !this.serverForm.valid || !this.workstationForm.valid) {
-    if (this.detailsForm.valid && this.estimatorForm.valid
-      && (!this.isServerScope || this.serverForm.valid)
-      && (!this.isWorkstationScope || this.workstationForm.valid)) {
+    // if (!this.estimatorForm.get('endPointSecurity').valid) {
+    //   this.isEndPointValid = false;
+    // }
+
+    if (this.detailsForm.valid) {
 
       this.setValuesToSave();
-      this.currentForm.estimatorDetails = this.estimatorModel;
-      this.currentForm.serverDetails = this.serverModel;
-      this.currentForm.workstationDetails = this.workstationModel;
+      // this.currentForm.estimatorDetails = this.estimatorModel;
 
 
       this.serviceProvider.saveForm(this.currentForm).subscribe(
@@ -554,93 +577,109 @@ export class EstimatorComponent implements OnInit {
 
   setValuesToSave() {
     debugger
-    this.currentForm.formId = this.detailsForm.get('formId').value;
-    this.currentForm.requestorId = this.detailsForm.get('requestorId').value;
-    this.currentForm.requestorName = this.detailsForm.get('requestorName').value;
-    this.currentForm.riskRating = this.detailsForm.get('riskRating').value;
-    this.currentForm.datePrepared = this.detailsForm.get('datePrepared').value['formatted'];
-    this.currentForm.validTo = this.detailsForm.get('validTo').value['formatted'];
-    this.currentForm.salesConnectNo = this.detailsForm.get('salesConnectNo').value;
-    this.currentForm.rfsNo = this.detailsForm.get('rfsNo').value;
-    this.currentForm.region = this.detailsForm.get('region').value;
-    this.currentForm.customerName = this.detailsForm.get('customerName').value;
-    this.currentForm.customerId = this.detailsForm.get('customerId').value;
-    this.currentForm.salesId = this.detailsForm.get('salesId').value;
-    this.currentForm.approver = this.detailsForm.get('approver').value;
-    this.currentForm.custom = this.detailsForm.get('custom').value;
-    this.currentForm.coe = this.detailsForm.get('coe').value;
 
-    this.estimatorModel.endPointSecurity = this.estimatorForm.get('endPointSecurity').value;
-    this.estimatorModel.serviceWindow = this.estimatorForm.get('serviceWindow').value;
-    this.estimatorModel.serviceScope = this.estimatorForm.get('serviceScope').value;
-    this.estimatorModel.b5 = this.estimatorForm.get('b5').value;
-    this.estimatorModel.b7 = this.estimatorForm.get('b7').value;
-    this.estimatorModel.b71 = this.estimatorForm.get('b7_1').value;
-    this.estimatorModel.baseFte = this.estimatorForm.get('baseFte').value;
-    this.estimatorModel.totalFte = this.estimatorForm.get('totalFte').value;
-    this.estimatorModel.transitionFte = this.estimatorForm.get('transitionFte').value;
+    const detailFormControls = EstimatorConfig.getDetailFormControls();
+    for (let control of detailFormControls) {
+      if (control === 'datePrepared' || control === 'validTo') {
+        this.currentForm[control] = this.detailsForm.get(control).value.formatted;
+      } else {
+        this.currentForm[control] = this.detailsForm.get(control).value;
+      }
+    }
 
-    this.serverModel.vendor = this.serverForm.get('vendor').value;
-    this.serverModel.antiMalwareAgent = this.serverForm.get('antiMalwareAgent').value;
-    this.serverModel.hostIpsOnServers = this.serverForm.get('hostIpsOnServers').value;
-    this.serverModel.hostFirewallOnServers = this.serverForm.get('hostFirewallOnServers').value;
-    this.serverModel.noOfConsoles = this.serverForm.get('noOfConsoles').value;
-    this.serverModel.serverFactor = this.serverForm.get('serverFactor').value;
-    this.serverModel.serverSupported = this.serverForm.get('serverSupported').value;
-    this.serverModel.hipsEffort = this.serverForm.get('hipsEffort').value;
-    this.serverModel.hipsFwEffort = this.serverForm.get('hipsFwEffort').value;
-    this.serverModel.noOfConsoleEffort = this.serverForm.get('noOfConsoleEffort').value;
-    this.serverModel.fteRoundOff = this.serverForm.get('fteRoundOff').value;
-    this.serverModel.fteForCalculation = this.serverForm.get('fteForCalculation').value;
-    this.serverModel.serverFactorBaseFte = this.serverForm.get('serverFactorBaseFte').value;
-    this.serverModel.serverSupportedBaseFte = this.serverForm.get('serverSupportedBaseFte').value;
-    this.serverModel.hipsEffortBaseFte = this.serverForm.get('hipsEffortBaseFte').value;
-    this.serverModel.hipsFwEffortBaseFte = this.serverForm.get('hipsFwEffortBaseFte').value;
-    this.serverModel.noOfConsoleEffortBaseFte = this.serverForm.get('noOfConsoleEffortBaseFte').value;
-    this.serverModel.fteRoundOffBaseFte = this.serverForm.get('fteRoundOffBaseFte').value;
-    this.serverModel.fteForCalculationBaseFte = this.serverForm.get('fteForCalculationBaseFte').value;
-    this.serverModel.serverFactorFinalFte = this.serverForm.get('serverFactorFinalFte').value;
-    this.serverModel.serverSupportedFinalFte = this.serverForm.get('serverSupportedFinalFte').value;
-    this.serverModel.hipsEffortFinalFte = this.serverForm.get('hipsEffortFinalFte').value;
-    this.serverModel.hipsFwEffortFinalFte = this.serverForm.get('hipsFwEffortFinalFte').value;
-    this.serverModel.noOfConsoleEffortFinalFte = this.serverForm.get('noOfConsoleEffortFinalFte').value;
-    this.serverModel.fteRoundOffFinalFte = this.serverForm.get('fteRoundOffFinalFte').value;
-    this.serverModel.fteForCalculationFinalFte = this.serverForm.get('fteForCalculationFinalFte').value;
+    this.currentForm.estimatorDetails = {};
+    const estimatorControls = EstimatorConfig.getEstimatorControls();
+    for (let control of estimatorControls) {
+      this.currentForm.estimatorDetails[control] = this.detailsForm.get(control).value;
+    }
 
-    this.workstationModel.vendor = this.workstationForm.get('vendor').value;
-    this.workstationModel.antiMalwareAgent = this.workstationForm.get('antiMalwareAgent').value;
-    this.workstationModel.encryptionEndpoint = this.workstationForm.get('encryptionEndpoint').value;
-    this.workstationModel.hostIpsOnServers = this.workstationForm.get('hostIpsOnServers').value;
-    this.workstationModel.hostFirewallOnServers = this.workstationForm.get('hostFirewallOnServers').value;
-    this.workstationModel.noOfConsoles = this.workstationForm.get('noOfConsoles').value;
-    this.workstationModel.serverFactor = this.workstationForm.get('serverFactor').value;
-    this.workstationModel.serverSupported = this.workstationForm.get('serverSupported').value;
-    this.workstationModel.encryptionEffort = this.workstationForm.get('encryptionEffort').value;
-    this.workstationModel.hipsEffort = this.workstationForm.get('hipsEffort').value;
-    this.workstationModel.hipsFwEffort = this.workstationForm.get('hipsFwEffort').value;
-    this.workstationModel.noOfConsoleEffort = this.workstationForm.get('noOfConsoleEffort').value;
-    this.workstationModel.fteRoundOff = this.workstationForm.get('fteRoundOff').value;
-    this.workstationModel.fteForCalculation = this.workstationForm.get('fteForCalculation').value;
-    this.workstationModel.serverFactorBaseFte = this.workstationForm.get('serverFactorBaseFte').value;
-    this.workstationModel.serverSupportedBaseFte = this.workstationForm.get('serverSupportedBaseFte').value;
-    this.workstationModel.encryptionEffortBaseFte = this.workstationForm.get('encryptionEffortBaseFte').value;
-    this.workstationModel.hipsEffortBaseFte = this.workstationForm.get('hipsEffortBaseFte').value;
-    this.workstationModel.hipsFwEffortBaseFte = this.workstationForm.get('hipsFwEffortBaseFte').value;
-    this.workstationModel.noOfConsoleEffortBaseFte = this.workstationForm.get('noOfConsoleEffortBaseFte').value;
-    this.workstationModel.fteRoundOffBaseFte = this.workstationForm.get('fteRoundOffBaseFte').value;
-    this.workstationModel.fteForCalculationBaseFte = this.workstationForm.get('fteForCalculationBaseFte').value;
-    this.workstationModel.serverFactorFinalFte = this.workstationForm.get('serverFactorFinalFte').value;
-    this.workstationModel.serverSupportedFinalFte = this.workstationForm.get('serverSupportedFinalFte').value;
-    this.workstationModel.encryptionEffortFinalFte = this.workstationForm.get('encryptionEffortFinalFte').value;
-    this.workstationModel.hipsEffortFinalFte = this.workstationForm.get('hipsEffortFinalFte').value;
-    this.workstationModel.hipsFwEffortFinalFte = this.workstationForm.get('hipsFwEffortFinalFte').value;
-    this.workstationModel.noOfConsoleEffortFinalFte = this.workstationForm.get('noOfConsoleEffortFinalFte').value;
-    this.workstationModel.fteRoundOffFinalFte = this.workstationForm.get('fteRoundOffFinalFte').value;
-    this.workstationModel.fteForCalculationFinalFte = this.workstationForm.get('fteForCalculationFinalFte').value;
-    this.workstationModel.deviceApplicationControl = this.workstationForm.get('deviceApplicationControl').value;
-    this.workstationModel.deviceApplicationControlEffort = this.workstationForm.get('deviceApplicationControlEffort').value;
-    this.workstationModel.deviceApplicationControlBaseFte = this.workstationForm.get('deviceApplicationControlBaseFte').value;
-    this.workstationModel.deviceApplicationControlFinalFte = this.workstationForm.get('deviceApplicationControlFinalFte').value;
+    // this.currentForm.formId = this.detailsForm.get('formId').value;
+    // this.currentForm.requestorId = this.detailsForm.get('requestorId').value;
+    // this.currentForm.requestorName = this.detailsForm.get('requestorName').value;
+    // this.currentForm.riskRating = this.detailsForm.get('riskRating').value;
+    // this.currentForm.datePrepared = this.detailsForm.get('datePrepared').value['formatted'];
+    // this.currentForm.validTo = this.detailsForm.get('validTo').value['formatted'];
+    // this.currentForm.salesConnectNo = this.detailsForm.get('salesConnectNo').value;
+    // this.currentForm.rfsNo = this.detailsForm.get('rfsNo').value;
+    // this.currentForm.region = this.detailsForm.get('region').value;
+    // this.currentForm.customerName = this.detailsForm.get('customerName').value;
+    // this.currentForm.customerId = this.detailsForm.get('customerId').value;
+    // this.currentForm.salesId = this.detailsForm.get('salesId').value;
+    // this.currentForm.approver = this.detailsForm.get('approver').value;
+    // this.currentForm.custom = this.detailsForm.get('custom').value;
+    // this.currentForm.coe = this.detailsForm.get('coe').value;
+
+    // this.estimatorModel.endPointSecurity = this.estimatorForm.get('endPointSecurity').value;
+    // this.estimatorModel.serviceWindow = this.estimatorForm.get('serviceWindow').value;
+    // this.estimatorModel.serviceScope = this.estimatorForm.get('serviceScope').value;
+    // this.estimatorModel.b5 = this.estimatorForm.get('b5').value;
+    // this.estimatorModel.b7 = this.estimatorForm.get('b7').value;
+    // this.estimatorModel.b71 = this.estimatorForm.get('b7_1').value;
+    // this.estimatorModel.baseFte = this.estimatorForm.get('baseFte').value;
+    // this.estimatorModel.totalFte = this.estimatorForm.get('totalFte').value;
+    // this.estimatorModel.transitionFte = this.estimatorForm.get('transitionFte').value;
+
+    // this.serverModel.vendor = this.serverForm.get('vendor').value;
+    // this.serverModel.antiMalwareAgent = this.serverForm.get('antiMalwareAgent').value;
+    // this.serverModel.hostIpsOnServers = this.serverForm.get('hostIpsOnServers').value;
+    // this.serverModel.hostFirewallOnServers = this.serverForm.get('hostFirewallOnServers').value;
+    // this.serverModel.noOfConsoles = this.serverForm.get('noOfConsoles').value;
+    // this.serverModel.serverFactor = this.serverForm.get('serverFactor').value;
+    // this.serverModel.serverSupported = this.serverForm.get('serverSupported').value;
+    // this.serverModel.hipsEffort = this.serverForm.get('hipsEffort').value;
+    // this.serverModel.hipsFwEffort = this.serverForm.get('hipsFwEffort').value;
+    // this.serverModel.noOfConsoleEffort = this.serverForm.get('noOfConsoleEffort').value;
+    // this.serverModel.fteRoundOff = this.serverForm.get('fteRoundOff').value;
+    // this.serverModel.fteForCalculation = this.serverForm.get('fteForCalculation').value;
+    // this.serverModel.serverFactorBaseFte = this.serverForm.get('serverFactorBaseFte').value;
+    // this.serverModel.serverSupportedBaseFte = this.serverForm.get('serverSupportedBaseFte').value;
+    // this.serverModel.hipsEffortBaseFte = this.serverForm.get('hipsEffortBaseFte').value;
+    // this.serverModel.hipsFwEffortBaseFte = this.serverForm.get('hipsFwEffortBaseFte').value;
+    // this.serverModel.noOfConsoleEffortBaseFte = this.serverForm.get('noOfConsoleEffortBaseFte').value;
+    // this.serverModel.fteRoundOffBaseFte = this.serverForm.get('fteRoundOffBaseFte').value;
+    // this.serverModel.fteForCalculationBaseFte = this.serverForm.get('fteForCalculationBaseFte').value;
+    // this.serverModel.serverFactorFinalFte = this.serverForm.get('serverFactorFinalFte').value;
+    // this.serverModel.serverSupportedFinalFte = this.serverForm.get('serverSupportedFinalFte').value;
+    // this.serverModel.hipsEffortFinalFte = this.serverForm.get('hipsEffortFinalFte').value;
+    // this.serverModel.hipsFwEffortFinalFte = this.serverForm.get('hipsFwEffortFinalFte').value;
+    // this.serverModel.noOfConsoleEffortFinalFte = this.serverForm.get('noOfConsoleEffortFinalFte').value;
+    // this.serverModel.fteRoundOffFinalFte = this.serverForm.get('fteRoundOffFinalFte').value;
+    // this.serverModel.fteForCalculationFinalFte = this.serverForm.get('fteForCalculationFinalFte').value;
+
+    // this.workstationModel.vendor = this.workstationForm.get('vendor').value;
+    // this.workstationModel.antiMalwareAgent = this.workstationForm.get('antiMalwareAgent').value;
+    // this.workstationModel.encryptionEndpoint = this.workstationForm.get('encryptionEndpoint').value;
+    // this.workstationModel.hostIpsOnServers = this.workstationForm.get('hostIpsOnServers').value;
+    // this.workstationModel.hostFirewallOnServers = this.workstationForm.get('hostFirewallOnServers').value;
+    // this.workstationModel.noOfConsoles = this.workstationForm.get('noOfConsoles').value;
+    // this.workstationModel.serverFactor = this.workstationForm.get('serverFactor').value;
+    // this.workstationModel.serverSupported = this.workstationForm.get('serverSupported').value;
+    // this.workstationModel.encryptionEffort = this.workstationForm.get('encryptionEffort').value;
+    // this.workstationModel.hipsEffort = this.workstationForm.get('hipsEffort').value;
+    // this.workstationModel.hipsFwEffort = this.workstationForm.get('hipsFwEffort').value;
+    // this.workstationModel.noOfConsoleEffort = this.workstationForm.get('noOfConsoleEffort').value;
+    // this.workstationModel.fteRoundOff = this.workstationForm.get('fteRoundOff').value;
+    // this.workstationModel.fteForCalculation = this.workstationForm.get('fteForCalculation').value;
+    // this.workstationModel.serverFactorBaseFte = this.workstationForm.get('serverFactorBaseFte').value;
+    // this.workstationModel.serverSupportedBaseFte = this.workstationForm.get('serverSupportedBaseFte').value;
+    // this.workstationModel.encryptionEffortBaseFte = this.workstationForm.get('encryptionEffortBaseFte').value;
+    // this.workstationModel.hipsEffortBaseFte = this.workstationForm.get('hipsEffortBaseFte').value;
+    // this.workstationModel.hipsFwEffortBaseFte = this.workstationForm.get('hipsFwEffortBaseFte').value;
+    // this.workstationModel.noOfConsoleEffortBaseFte = this.workstationForm.get('noOfConsoleEffortBaseFte').value;
+    // this.workstationModel.fteRoundOffBaseFte = this.workstationForm.get('fteRoundOffBaseFte').value;
+    // this.workstationModel.fteForCalculationBaseFte = this.workstationForm.get('fteForCalculationBaseFte').value;
+    // this.workstationModel.serverFactorFinalFte = this.workstationForm.get('serverFactorFinalFte').value;
+    // this.workstationModel.serverSupportedFinalFte = this.workstationForm.get('serverSupportedFinalFte').value;
+    // this.workstationModel.encryptionEffortFinalFte = this.workstationForm.get('encryptionEffortFinalFte').value;
+    // this.workstationModel.hipsEffortFinalFte = this.workstationForm.get('hipsEffortFinalFte').value;
+    // this.workstationModel.hipsFwEffortFinalFte = this.workstationForm.get('hipsFwEffortFinalFte').value;
+    // this.workstationModel.noOfConsoleEffortFinalFte = this.workstationForm.get('noOfConsoleEffortFinalFte').value;
+    // this.workstationModel.fteRoundOffFinalFte = this.workstationForm.get('fteRoundOffFinalFte').value;
+    // this.workstationModel.fteForCalculationFinalFte = this.workstationForm.get('fteForCalculationFinalFte').value;
+    // this.workstationModel.deviceApplicationControl = this.workstationForm.get('deviceApplicationControl').value;
+    // this.workstationModel.deviceApplicationControlEffort = this.workstationForm.get('deviceApplicationControlEffort').value;
+    // this.workstationModel.deviceApplicationControlBaseFte = this.workstationForm.get('deviceApplicationControlBaseFte').value;
+    // this.workstationModel.deviceApplicationControlFinalFte = this.workstationForm.get('deviceApplicationControlFinalFte').value;
   }
 
 
@@ -734,79 +773,84 @@ export class EstimatorComponent implements OnInit {
     dateArr = formDetail.validTo.split('-');
     this.validToModel = { date: { year: dateArr[2], month: dateArr[1], day: dateArr[0] } };
 
-    const selectedCoe = this.detailsForm.get('coe').value;
-    this.setSelectedCoe(selectedCoe);
-
     const estimatorFormControls = EstimatorConfig.getEstimatorControls();
     for (const control of estimatorFormControls) {
-      this.estimatorForm.get(control).setValue(formDetail['estimatorDetails'][control]);
+      this.detailsForm.get(control).setValue(formDetail['estimatorDetails'][control]);
     }
 
-    const scope = this.estimatorForm.get('serviceScope').value;
-    if (scope === 'SERVER') {
-      this.isServerScope = true;
-    } else if (scope === 'WORKSTATION') {
-      this.isWorkstationScope = true;
-    } else {
-      this.isServerScope = true;
-      this.isWorkstationScope = true;
-    }
+    // const selectedCoe = this.detailsForm.get('coe').value;
+    // this.setSelectedCoe(selectedCoe);
 
-    const selectedService = this.estimatorForm.get('endPointSecurity').value;
-    this.setSelectedServiceAction(selectedService);
+    // const estimatorFormControls = EstimatorConfig.getEstimatorControls();
+    // for (const control of estimatorFormControls) {
+    //   this.estimatorForm.get(control).setValue(formDetail['estimatorDetails'][control]);
+    // }
 
-    const serverFormControls = EstimatorConfig.getServerFormControls();
-    for (const control of serverFormControls) {
-      this.serverForm.get(control).setValue(formDetail['serverDetails'][control]);
-    }
+    // const scope = this.estimatorForm.get('serviceScope').value;
+    // if (scope === 'SERVER') {
+    //   this.isServerScope = true;
+    // } else if (scope === 'WORKSTATION') {
+    //   this.isWorkstationScope = true;
+    // } else {
+    //   this.isServerScope = true;
+    //   this.isWorkstationScope = true;
+    // }
 
-    this.hostIpsOnServer = this.serverForm.get('hostIpsOnServers').value;
-    this.hostFirewallOnServer = this.serverForm.get('hostFirewallOnServers').value;
+    // const selectedService = this.estimatorForm.get('endPointSecurity').value;
+    // this.setSelectedServiceAction(selectedService);
 
-    const workstationFormControls = EstimatorConfig.getWorkstationFormControls();
-    for (const control of workstationFormControls) {
-      this.workstationForm.get(control).setValue(formDetail['workstationDetails'][control]);
-    }
+    // const serverFormControls = EstimatorConfig.getServerFormControls();
+    // for (const control of serverFormControls) {
+    //   this.serverForm.get(control).setValue(formDetail['serverDetails'][control]);
+    // }
 
-    this.encryptionEndpoint = this.workstationForm.get('encryptionEndpoint').value;
-    this.hostIpsOnWorkstation = this.workstationForm.get('hostIpsOnServers').value;
-    this.hostFirewallOnWorkstation = this.workstationForm.get('hostFirewallOnServers').value;
+    // this.hostIpsOnServer = this.serverForm.get('hostIpsOnServers').value;
+    // this.hostFirewallOnServer = this.serverForm.get('hostFirewallOnServers').value;
+
+    // const workstationFormControls = EstimatorConfig.getWorkstationFormControls();
+    // for (const control of workstationFormControls) {
+    //   this.workstationForm.get(control).setValue(formDetail['workstationDetails'][control]);
+    // }
+
+    // this.encryptionEndpoint = this.workstationForm.get('encryptionEndpoint').value;
+    // this.hostIpsOnWorkstation = this.workstationForm.get('hostIpsOnServers').value;
+    // this.hostFirewallOnWorkstation = this.workstationForm.get('hostFirewallOnServers').value;
 
   }
 
-  setSelectedCoe(selectedCoe: string) {
-    if (selectedCoe === 'END_POINT') {
-      this.setAction(true, false, false, false, false);
-    } else if (selectedCoe === 'DAS') {
-      this.setAction(false, true, false, false, false);
-    } else if (selectedCoe === 'INFRA') {
-      this.setAction(false, false, true, false, false);
-    } else if (selectedCoe === 'IOM') {
-      this.setAction(false, false, false, true, false);
-    } else if (selectedCoe === 'SIOC') {
-      this.setAction(false, false, false, false, true);
-    }
-  }
+  // setSelectedCoe(selectedCoe: string) {
+  //   if (selectedCoe === 'END_POINT') {
+  //     this.setAction(true, false, false, false, false);
+  //   } else if (selectedCoe === 'DAS') {
+  //     this.setAction(false, true, false, false, false);
+  //   } else if (selectedCoe === 'INFRA') {
+  //     this.setAction(false, false, true, false, false);
+  //   } else if (selectedCoe === 'IOM') {
+  //     this.setAction(false, false, false, true, false);
+  //   } else if (selectedCoe === 'SIOC') {
+  //     this.setAction(false, false, false, false, true);
+  //   }
+  // }
 
-  setSelectedServiceAction(service: string) {
-    if (service === 'MALWARE') {
-      this.setServiceAction(true, false, false, false, false);
-    } else if (service === 'WEB-SEC') {
-      this.setServiceAction(false, true, false, false, false);
-    } else if (service === 'EMAIL-SEC') {
-      this.setServiceAction(false, false, true, false, false);
-    } else if (service === 'VOL_MGMT') {
-      this.setServiceAction(false, false, false, true, false);
-    } else if (service === 'DLP') {
-      this.setServiceAction(false, false, false, false, true);
-    }
-  }
+  // setSelectedServiceAction(service: string) {
+  //   if (service === 'MALWARE') {
+  //     this.setServiceAction(true, false, false, false, false);
+  //   } else if (service === 'WEB-SEC') {
+  //     this.setServiceAction(false, true, false, false, false);
+  //   } else if (service === 'EMAIL-SEC') {
+  //     this.setServiceAction(false, false, true, false, false);
+  //   } else if (service === 'VOL_MGMT') {
+  //     this.setServiceAction(false, false, false, true, false);
+  //   } else if (service === 'DLP') {
+  //     this.setServiceAction(false, false, false, false, true);
+  //   }
+  // }
 
   resetFormFields() {
     this.detailsFormSubmitted = false;
-    this.estimatorForm.reset();
-    this.serverForm.reset();
-    this.workstationForm.reset();
+    // this.estimatorForm.reset();
+    // this.serverForm.reset();
+    // this.workstationForm.reset();
     this.detailsForm.reset();
 
     this.getNextFormId();
@@ -824,18 +868,18 @@ export class EstimatorComponent implements OnInit {
     this.datePreparedModel = { date: { year: dateArr[2], month: dateArr[1], day: dateArr[0] } };
     this.validToModel = { date: { year: dateArr[2], month: dateArr[1], day: dateArr[0] } };
 
-    this.hostFirewallOnServer = false;
-    this.hostIpsOnServer = false;
-    this.hostIpsOnWorkstation = false;
-    this.hostFirewallOnWorkstation = false;
-    this.deviceApplicationControl = false;
-    this.encryptionEndpoint = false;
+    // this.hostFirewallOnServer = false;
+    // this.hostIpsOnServer = false;
+    // this.hostIpsOnWorkstation = false;
+    // this.hostFirewallOnWorkstation = false;
+    // this.deviceApplicationControl = false;
+    // this.encryptionEndpoint = false;
 
-    this.setAction(false, false, false, false, false);
-    this.setServiceAction(false, false, false, false, false);
+    // this.setAction(false, false, false, false, false);
+    // this.setServiceAction(false, false, false, false, false);
 
-    this.isWorkstationScope = false;
-    this.isServerScope = false;
+    // this.isWorkstationScope = false;
+    // this.isServerScope = false;
 
   }
 

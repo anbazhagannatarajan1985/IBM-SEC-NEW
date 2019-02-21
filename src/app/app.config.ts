@@ -5,7 +5,9 @@ export class AppConfig {
 
   static APP_URL = 'http://localhost:8080';
 
-  static APPROVER_TYPE = '2';
+  static REQUESTOR_TYPE = 'REQUESTOR';
+  static TSA_TYPE = 'TSA';
+  static APPROVER_TYPE = 'APPROVER';
 
   public static SERVICE_WINDOW_OPERATIONS = [
     { id: '1', value: '8*5' },
@@ -18,8 +20,6 @@ export class AppConfig {
   public static SERVICE_SCOPES = [
     { id: 'SERVER', value: 'Servers' },
     { id: 'WORKSTATION', value: 'Workstations' },
-    { id: 'SERVER-WORKSTATION', value: 'Servers & Workstations' },
-
   ];
 
   public static RISK_RATING = [

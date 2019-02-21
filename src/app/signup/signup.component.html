@@ -25,8 +25,9 @@
             <!-- <input type="password" class="form-control input-underline input-lg" id="confirmPassword" placeholder="{{ 'Confirm Password' | translate }}"> -->
             <select formControlName="userType" class="form-control input-underline input-lg" id="userType" placeholder="Select Type">
               <option style="color: black !important;" value="" selected disabled>Select User Type</option>
-              <option style="color: black !important;" value="2">APPROVER</option>
-              <option style="color: black !important;" value="3">OTHERS</option>
+              <option style="color: black !important;" value="REQUESTOR">REQUESTOR</option>
+              <option style="color: black !important;" value="TSA">TSA</option>
+              <option style="color: black !important;" value="APPROVER">APPROVER</option>
             </select>
           </div>
           <div *ngIf="registrationSuccess" class="form-group">

@@ -3,6 +3,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { MenuService } from '../../../shared/services/menu.service';
+import { AppConfig } from '../../../app.config';
 
 @Component({
     selector: 'app-sidebar',
@@ -16,6 +17,8 @@ export class SidebarComponent implements OnInit {
     pushRightClass: string;
     userType: string = '';
     displayMenu: boolean = false;
+    approverType = AppConfig.APPROVER_TYPE;
+    tsaType = AppConfig.TSA_TYPE;
 
     @Output() collapsedEvent = new EventEmitter<boolean>();
 

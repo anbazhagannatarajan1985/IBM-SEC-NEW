@@ -19,7 +19,15 @@ export interface FormDetailModel {
   salesId?: string;
   approver?: string;
   custom?: string;
+  endPoint?: string;
+  serviceWindow?: string;
+  serviceScope?: string;
+  vendor?: string;
+  noOfServers?: number;
+  noOfConsoles?: number;
+
   estimatorDetails?: EstimatorModel;
-  serverDetails?: ServerModel;
-  workstationDetails?: WorkstationModel;
+  // serverDetails?: ServerModel;
+  // workstationDetails?: WorkstationModel;
+
 }

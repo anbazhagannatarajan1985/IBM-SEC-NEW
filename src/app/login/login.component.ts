@@ -7,6 +7,7 @@ import * as models from '../shared/models';
 import { ServiceProvider } from '../shared/services/service-provider';
 import { LocalStorageService } from '../shared/LocalStorage.service';
 import { MenuService } from '../shared/services/menu.service';
+import { AppConfig } from '../app.config';
 
 @Component({
     selector: 'app-login',
@@ -42,9 +43,7 @@ export class LoginComponent implements OnInit {
         this.serviceProvider.login(data).subscribe(
             result => {
                 localStorage.setItem('token', result['Authorization']);
-                this.getUserDetails(data.username);
-                localStorage.setItem('isLoggedin', 'true');
-                this.router.navigate(['/home']);
+                this.setUserDetails(data.username);
             },
             err => {
                 this.failedLogin = true;
@@ -57,7 +56,7 @@ export class LoginComponent implements OnInit {
 
     }
 
-    getUserDetails(username: string) {
+    setUserDetails(username: string) {
         this.serviceProvider.getUserById(username).subscribe(
             result => {
                 const currentUser: models.UserModel = result;
@@ -66,7 +65,12 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('user_type', currentUser.userType);
                 this.menuService.setUserType(currentUser.userType);
                 this.menuService.setLoggedIn(true);
-
+                localStorage.setItem('isLoggedin', 'true');
+                let showPendingList = 'false';
+                if (currentUser.userType === AppConfig.APPROVER_TYPE) {
+                    showPendingList = 'true';
+                }
+                this.router.navigate(['/form-list', showPendingList]);
 
             },
             err => {

@@ -10,7 +10,7 @@ const routes: Routes = [
             { path: '', redirectTo: 'home', pathMatch: 'prefix' },
             { path: 'home', loadChildren: './home/home.module#HomeModule' },
             { path: 'estimator', loadChildren: './estimator/estimator.module#EstimatorModule' },
-            { path: 'estimator/:isSearch', loadChildren: './estimator/estimator.module#EstimatorModule' },
+            { path: 'search-form/:isSearch', loadChildren: './estimator/estimator.module#EstimatorModule' },
             { path: 'edit-estimator/:formId/:isView', loadChildren: './estimator/estimator.module#EstimatorModule' },
             { path: 'form-list/:showPendingList', loadChildren: './form-list/form-list.module#FormListModule' },
             // { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
